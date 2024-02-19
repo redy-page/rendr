@@ -1,0 +1,90 @@
+import { PageTypes } from "../enums";
+
+export type SVGAttributes = Partial<SVGProps<SVGSVGElement>>;
+
+export type Page = {
+  id: number;
+  type: PageTypes;
+  domain: string;
+  enabled: boolean;
+  template: string;
+  personal: Personal;
+};
+
+export type Personal = {
+  id: number;
+  profilePicture: string | null;
+  resume: string | null;
+  profile: Profile;
+  education: Education[];
+  experiences: Experience[];
+  projects: Project[];
+  skills: Skill[];
+  socials: Social[];
+};
+
+export type Profile = {
+  id: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+  headline: string;
+  about: string;
+};
+
+export type School = {
+  id: number;
+  name: string;
+};
+
+export type Education = {
+  id: number;
+  school: School;
+  major: string;
+  degree: string;
+  endMonth: string;
+  endYear: number;
+  description: string;
+};
+
+export type ExpType = "Internship" | "Part-Time" | "Full-Time" | "Contract";
+
+export type Company = {
+  id: number;
+  name: string;
+};
+
+export type Experience = {
+  id: number;
+  company: Company;
+  position: string;
+  location: string;
+  exType: ExpType;
+  stMonth: string;
+  stYear: number;
+  endMonth: string;
+  endYear: number;
+  description: string;
+  current: boolean;
+};
+
+export type Project = {
+  id: number;
+  name: string;
+  link: string;
+  description: string;
+  month: string;
+  year: number;
+  thumbnail: string | null;
+};
+
+export type Skill = {
+  id: number;
+  category: string;
+  skillList: string;
+};
+
+export type Social = {
+  id: number;
+  socialLink: string;
+};

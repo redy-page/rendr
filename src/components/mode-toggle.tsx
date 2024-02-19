@@ -6,23 +6,27 @@ import { useEffect, useState } from "react";
 
 export default function ModeToggle() {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const [currTheme, setCurrTheme] = useState<string | undefined>(undefined);
+  const { theme, systemTheme, setTheme } = useTheme();
 
   useEffect(() => {
+    console.log(theme, systemTheme);
+    if (theme === "system") setCurrTheme(systemTheme);
+    else setCurrTheme(theme);
     setMounted(true);
-  }, []);
+  }, [theme, systemTheme]);
 
-  if (!mounted) return null;
+  if (!mounted) return <></>;
 
   return (
     <>
-      {theme === "light" && (
+      {currTheme !== "dark" && (
         <Icons.moon
           onClick={() => setTheme("dark")}
           className="hover:text-primary cursor-pointer"
         />
       )}
-      {theme === "dark" && (
+      {currTheme === "dark" && (
         <Icons.sun
           onClick={() => setTheme("light")}
           className="hover:text-primary cursor-pointer"
