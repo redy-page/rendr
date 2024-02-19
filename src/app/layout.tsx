@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
-import Link from "next/link";
 import { SiteFooter } from "@/components/site-footer";
-import ModeToggle from "@/components/mode-toggle";
+import Header from "@/components/header";
+import { headers } from "next/headers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,6 +18,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = headers();
+  console.log(headersList.get("host"));
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
@@ -28,18 +30,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="flex min-h-screen flex-col">
-            <header className="container z-40 bg-background">
-              <div className="flex h-20 items-center justify-between py-6">
-                <div className="flex gap-6 md:gap-10">
-                  <Link href="/" className="items-center space-x-2 flex">
-                    Name here
-                  </Link>
-                </div>
-                <nav>
-                  <ModeToggle />
-                </nav>
-              </div>
-            </header>
+            <Header />
             <main className="flex-1">{children}</main>
             <SiteFooter />
           </div>
