@@ -35,3 +35,15 @@ export const getSocials = async (domain: string) => {
 
   return page.personal.socials;
 };
+
+export const getEducation = async (domain: string) => {
+  const page = await fetchPage(domain);
+  if (!page.enabled) return notFound();
+  return page.personal.education;
+};
+
+export const getExperience = async (domain: string) => {
+  const page = await fetchPage(domain);
+  if (!page.enabled) return notFound();
+  return page.personal.experiences;
+};

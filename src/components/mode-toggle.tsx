@@ -16,8 +16,6 @@ export default function ModeToggle() {
     setMounted(true);
   }, [theme, systemTheme]);
 
-  if (!mounted) return <></>;
-
   return (
     <>
       {currTheme !== "dark" && (

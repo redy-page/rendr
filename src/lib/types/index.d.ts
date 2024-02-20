@@ -88,3 +88,8 @@ export type Social = {
   id: number;
   socialLink: string;
 };
+
+export type TimelineProps = {
+  type: "Experience" | "Education";
+  elements: Experience[] | Education[];
+};

@@ -1,9 +1,11 @@
+"use client";
 import Link from "next/link";
 import ModeToggle from "./mode-toggle";
+import { Link as ScrollLink } from "react-scroll";
 
 export default function Header({ profileName }: { profileName: string }) {
   return (
-    <header className="container z-40 bg-background">
+    <header className="w-full z-40 bg-background px-8 lg:px-28 md:fixed">
       <div className="flex h-20 items-center justify-between py-6">
         <div className="flex gap-6 md:gap-10">
           <Link
@@ -13,9 +15,30 @@ export default function Header({ profileName }: { profileName: string }) {
             {profileName}
           </Link>
         </div>
-        <nav>
-          <ModeToggle />
+        <nav className="items-stretch hidden space-x-8 md:flex">
+          <ScrollLink
+            to="home"
+            smooth={true}
+            className="flex hover:text-primary cursor-pointer"
+          >
+            Home
+          </ScrollLink>
+          <ScrollLink
+            to="education"
+            smooth={true}
+            className="flex hover:text-primary cursor-pointer"
+          >
+            Education
+          </ScrollLink>
+          <ScrollLink
+            to="experience"
+            smooth={true}
+            className="flex hover:text-primary cursor-pointer"
+          >
+            Experience
+          </ScrollLink>
         </nav>
+        <ModeToggle />
       </div>
     </header>
   );
