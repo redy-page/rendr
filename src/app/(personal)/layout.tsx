@@ -6,7 +6,7 @@ import { Metadata } from "next";
 export async function generateMetadata(): Promise<Metadata> {
   const domain = "jmadupalli.redy.page";
 
-  const profile = await getProfile(domain);
+  const { profile } = await getProfile(domain);
 
   return {
     title: {

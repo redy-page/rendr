@@ -10,7 +10,7 @@ export default function SocialIcons({ socials }: { socials: Social[] }) {
 
   return (
     <>
-      <span className="mt-1 w-[50%] mx-auto block border-t" />
+      <span className="mt-1 w-[40%] mx-auto block border-t" />
       <div className="px-2 py-1">
         {socials.map((social) => (
           <SocialIcon
@@ -19,7 +19,7 @@ export default function SocialIcons({ socials }: { socials: Social[] }) {
             style={{ width: 30, height: 30 }}
             bgColor="transparent"
             fgColor={theme === "dark" ? "white" : "gray"}
-            className="hover:bg-secondary rounded-3xl"
+            className="hover:bg-secondary rounded-full"
             target="_blank"
           />
         ))}

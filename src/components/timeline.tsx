@@ -13,9 +13,6 @@ export default function Timeline({ type, elements }: TimelineProps) {
         <div className="col-span-12 sm:col-span-3">
           <div className="text-center sm:text-left mb-14 before:block before:w-24 before:h-3 before:mb-5 before:rounded-md before:mx-auto sm:before:mx-0 before:bg-primary">
             <h3 className="text-3xl font-semibold">{type}</h3>
-            <span className="text-sm font-bold tracki uppercase text-muted-foreground">
-              {/* Vestibulum diam nunc */}
-            </span>
           </div>
         </div>
         <div className="relative col-span-12 px-4 space-y-6 sm:col-span-9">

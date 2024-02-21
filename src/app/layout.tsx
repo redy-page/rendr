@@ -10,8 +10,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const headersList = headers();
-  console.log(headersList.get("host"));
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>

@@ -1,9 +1,18 @@
 import { SVGAttributes } from "@/lib/types";
-import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
+import {
+  SunIcon,
+  MoonIcon,
+  AvatarIcon,
+  ImageIcon,
+  EnvelopeClosedIcon,
+} from "@radix-ui/react-icons";
 
 export const Icons = {
   sun: SunIcon,
   moon: MoonIcon,
+  user: AvatarIcon,
+  image: ImageIcon,
+  envelope: EnvelopeClosedIcon,
   logo: ({ ...props }: SVGAttributes) => (
     <svg
       aria-hidden="true"
@@ -24,7 +33,7 @@ export const Icons = {
       </g>
     </svg>
   ),
-  logoWithSymbol: ({ ...props }: SVGAttributes ) => (
+  logoWithSymbol: ({ ...props }: SVGAttributes) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 232 107" {...props}>
       <g
         data-v-423bf9ae=""

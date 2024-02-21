@@ -1,16 +1,19 @@
 import { getProfile, getSocials } from "@/app/_internal/apiUtil";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import SocialIcons from "./social-icons";
+import { Button } from "../ui/button";
+import Link from "next/link";
+import { Icons } from "../icons";
 
 export default async function ProfileSection() {
-  const profile = await getProfile("jmadupalli.redy.page");
+  const { profile, resume } = await getProfile("jmadupalli.redy.page");
   const socials = await getSocials("jmadupalli.redy.page");
 
   return (
     <>
       <section
         id="home"
-        className="min-h-screen flex flex-col lg:flex-row justify-center pt-8 md:pt-24 pb-8 gap-8 lg:py-0 lg:gap-32  "
+        className="min-h-screen flex flex-col lg:flex-row justify-center py-8 md:pt-20 gap-8 lg:gap-32  "
       >
         <div className="flex flex-col justify-center items-center lg:items-end">
           <div className="text-center">
@@ -20,7 +23,9 @@ export default async function ProfileSection() {
                 alt={profile.firstName}
                 className="object-cover"
               />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarFallback>
+                <Icons.user className="w-full h-full text-muted-foreground" />
+              </AvatarFallback>
             </Avatar>
             <span className="font-bold text-xl">
               <p>
@@ -29,6 +34,11 @@ export default async function ProfileSection() {
               <p className="text-sm py-1">{profile.headline}</p>
             </span>
             <SocialIcons socials={socials} />
+            {resume && (
+              <Link href={resume} target="_blank">
+                <Button className="mt-2">Resume</Button>
+              </Link>
+            )}
           </div>
         </div>
         <div className="flex flex-col m-auto lg:m-0 max-w-2xl px-6 md:px-0 justify-center items-center lg:items-start text-center">
