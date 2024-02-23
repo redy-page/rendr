@@ -1,4 +1,5 @@
 import { Page } from "@/lib/types";
+import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 
 export const API_URL_SERVER = process.env.NEXT_INTERNAL_API_URL;
@@ -6,7 +7,7 @@ export const API_URL_SERVER = process.env.NEXT_INTERNAL_API_URL;
 export const FILES_SERVER = process.env.NEXT_PUBLIC_FILES;
 
 export const fetchPage = async (): Promise<Page> => {
-  const domain = "jmadupalli.redy.page";
+  const domain = headers().get("host");
   const res = await fetch(`${API_URL_SERVER}${domain}`, {
     method: "GET",
     headers: {
