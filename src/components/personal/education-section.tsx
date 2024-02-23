@@ -2,7 +2,7 @@ import { getEducation } from "@/app/_internal/apiUtil";
 import Timeline from "../timeline";
 
 export default async function EducationSection() {
-  const education = await getEducation("jmadupalli.redy.page");
+  const education = await getEducation();
   education.sort((a, b) => b.endYear - a.endYear);
   return (
     education &&

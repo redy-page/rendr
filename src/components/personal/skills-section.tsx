@@ -3,7 +3,7 @@ import ProjectCard from "./project-card";
 import SkillCard from "./skill-card";
 
 export default async function SkillsSection() {
-  const skills = await getSkills("jmadupalli.redy.page");
+  const skills = await getSkills();
   return (
     skills &&
     skills.length > 0 && (

@@ -4,7 +4,7 @@ import SocialIcons from "./social-icons";
 import Link from "next/link";
 
 export default async function ContactSection() {
-  const { email, socials } = await getContact("jmadupalli.redy.page");
+  const { email, socials } = await getContact();
   return (
     <section
       id="contact"

@@ -2,7 +2,7 @@ import { getProjects } from "@/app/_internal/apiUtil";
 import ProjectCard from "./project-card";
 
 export default async function ProjectsSection() {
-  const projects = await getProjects("jmadupalli.redy.page");
+  const projects = await getProjects();
   return (
     projects &&
     projects.length > 0 && (

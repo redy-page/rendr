@@ -6,7 +6,7 @@ import { Metadata } from "next";
 export async function generateMetadata(): Promise<Metadata> {
   const domain = "jmadupalli.redy.page";
 
-  const { profile } = await getProfile(domain);
+  const { profile } = await getProfile();
 
   return {
     title: {
@@ -32,8 +32,7 @@ export default async function PageLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const domain = "jmadupalli.redy.page";
-  const profileName = await getProfileName(domain);
+  const profileName = await getProfileName();
 
   return (
     <>

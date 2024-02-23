@@ -1,31 +1,34 @@
-import { getProfile, getSocials } from "@/app/_internal/apiUtil";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { FILES_SERVER, getProfile, getSocials } from "@/app/_internal/apiUtil";
+import { Avatar } from "../ui/avatar";
 import SocialIcons from "./social-icons";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { Icons } from "../icons";
+import Image from "next/image";
 
 export default async function ProfileSection() {
-  const { profile, resume } = await getProfile("jmadupalli.redy.page");
-  const socials = await getSocials("jmadupalli.redy.page");
+  const { profile, resume, avatar } = await getProfile();
+  const socials = await getSocials();
 
   return (
     <>
       <section
         id="home"
-        className="min-h-screen flex flex-col lg:flex-row justify-center py-8 md:pt-20 gap-8 lg:gap-32  "
+        className="min-h-screen flex flex-col lg:flex-row justify-center py-12 md:pt-24 gap-8 lg:gap-32  "
       >
         <div className="flex flex-col justify-center items-center lg:items-end">
           <div className="text-center">
             <Avatar className="w-32 h-32 md:w-48 md:h-48 mb-4 mx-auto">
-              <AvatarImage
-                src="https://github.com/shadcn.png"
-                alt={profile.firstName}
-                className="object-cover"
-              />
-              <AvatarFallback>
-                <Icons.user className="w-full h-full text-muted-foreground" />
-              </AvatarFallback>
+              {avatar ? (
+                <Image
+                  alt="Avatar"
+                  src={`${FILES_SERVER}${avatar}`}
+                  fill={true}
+                  className="object-cover"
+                />
+              ) : (
+                <Icons.user className="object-cover text-muted-foreground w-full h-full" />
+              )}
             </Avatar>
             <span className="font-bold text-xl">
               <p>

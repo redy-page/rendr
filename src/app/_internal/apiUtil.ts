@@ -3,7 +3,10 @@ import { notFound } from "next/navigation";
 
 export const API_URL_SERVER = process.env.NEXT_INTERNAL_API_URL;
 
-export const fetchPage = async (domain: string): Promise<Page> => {
+export const FILES_SERVER = process.env.NEXT_PUBLIC_FILES;
+
+export const fetchPage = async (): Promise<Page> => {
+  const domain = "jmadupalli.redy.page";
   const res = await fetch(`${API_URL_SERVER}${domain}`, {
     method: "GET",
     headers: {
@@ -17,48 +20,55 @@ export const fetchPage = async (domain: string): Promise<Page> => {
   return res.json();
 };
 
-export const fetchPageOrThrow = async (domain: string) => {
-  const page = await fetchPage(domain);
+export const fetchPageOrThrow = async () => {
+  const page = await fetchPage();
   if (!page.enabled) return notFound();
   return page;
 };
 
-export const getProfile = async (domain: string) => {
-  const page = await fetchPageOrThrow(domain);
-  return { profile: page.personal.profile, resume: page.personal.resume };
+export const getProfile = async () => {
+  const page = await fetchPageOrThrow();
+  return {
+    profile: page.personal.profile,
+    resume: page.personal.resume,
+    avatar:
+      process.env.NODE_ENV === "production"
+        ? page.personal.profilePicture
+        : undefined,
+  };
 };
 
-export const getProfileName = async (domain: string) => {
-  const profile = await getProfile(domain);
+export const getProfileName = async () => {
+  const profile = await getProfile();
   return `${profile.profile.firstName} ${profile.profile.lastName}`;
 };
 
-export const getSocials = async (domain: string) => {
-  const page = await fetchPageOrThrow(domain);
+export const getSocials = async () => {
+  const page = await fetchPageOrThrow();
   return page.personal.socials;
 };
 
-export const getEducation = async (domain: string) => {
-  const page = await fetchPageOrThrow(domain);
+export const getEducation = async () => {
+  const page = await fetchPageOrThrow();
   return page.personal.education;
 };
 
-export const getExperience = async (domain: string) => {
-  const page = await fetchPageOrThrow(domain);
+export const getExperience = async () => {
+  const page = await fetchPageOrThrow();
   return page.personal.experiences;
 };
 
-export const getProjects = async (domain: string) => {
-  const page = await fetchPageOrThrow(domain);
+export const getProjects = async () => {
+  const page = await fetchPageOrThrow();
   return page.personal.projects;
 };
 
-export const getSkills = async (domain: string) => {
-  const page = await fetchPageOrThrow(domain);
+export const getSkills = async () => {
+  const page = await fetchPageOrThrow();
   return page.personal.skills;
 };
 
-export const getContact = async (domain: string) => {
-  const page = await fetchPageOrThrow(domain);
+export const getContact = async () => {
+  const page = await fetchPageOrThrow();
   return { email: page.personal.profile.email, socials: page.personal.socials };
 };

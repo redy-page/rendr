@@ -3,7 +3,7 @@ import Timeline from "../timeline";
 import { sortExperiences } from "@/lib/utils";
 
 export default async function ExperienceSection() {
-  let experiences = await getExperience("jmadupalli.redy.page");
+  let experiences = await getExperience();
   experiences = sortExperiences(experiences);
   return (
     experiences &&
