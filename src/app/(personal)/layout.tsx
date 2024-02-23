@@ -1,6 +1,6 @@
 import Header from "@/components/header";
 import { SiteFooter } from "@/components/site-footer";
-import { getProfile, getProfileName } from "../_internal/apiUtil";
+import { fetchPageOrThrow, getProfile } from "../_internal/apiUtil";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -32,12 +32,13 @@ export default async function PageLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const profileName = await getProfileName();
+  const page = await fetchPageOrThrow();
+  const profileName = `${page.personal.profile.firstName} ${page.personal.profile.lastName}`;
 
   return (
     <>
       <div className="flex min-h-screen flex-col">
-        <Header profileName={profileName} />
+        <Header profileName={profileName} page={page} />
         <main className="flex-1">{children}</main>
         <SiteFooter profileName={profileName} />
       </div>

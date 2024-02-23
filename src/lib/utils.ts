@@ -53,3 +53,7 @@ export const sortExperiences = (experience: Experience[]) => {
   );
   return [...currentJobs, ...previousJobs];
 };
+
+export const isArrNotEmpty = (arr: any[]) => {
+  return arr && arr.length > 0;
+};
