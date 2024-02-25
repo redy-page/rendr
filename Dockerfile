@@ -8,6 +8,7 @@ RUN npm install
 FROM node:lts-alpine as next_builder
 ARG NEXT_PUBLIC_API_URL
 ARG NEXT_INTERNAL_API_URL
+ARG NEXT_PUBLIC_FILES
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .

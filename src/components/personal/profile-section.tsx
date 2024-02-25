@@ -38,7 +38,7 @@ export default async function ProfileSection() {
             </span>
             <SocialIcons socials={socials} />
             {resume && (
-              <Link href={resume} target="_blank">
+              <Link href={`${FILES_SERVER}${resume}`} target="_blank">
                 <Button className="mt-2">Resume</Button>
               </Link>
             )}

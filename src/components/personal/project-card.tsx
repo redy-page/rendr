@@ -21,6 +21,8 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { Icons } from "../icons";
+import { FILES_SERVER } from "@/app/_internal/apiUtil";
+import Image from "next/image";
 
 export default function ProjectCard({ project }: { project: Project }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -56,14 +58,12 @@ export default function ProjectCard({ project }: { project: Project }) {
               {project.thumbnail && (
                 <div className="flex flex-col md:flex-row md:w-[50%]">
                   <Avatar className="w-full h-auto rounded-none">
-                    <AvatarImage
-                      src="https://github.com/jmadupalli/redy-blog/raw/main/demo/redy-blog-demo.gif"
+                    <Image
                       alt="thumbnail"
                       className="object-contain"
+                      fill={true}
+                      src={`${FILES_SERVER}${project.thumbnail}`}
                     />
-                    <AvatarFallback>
-                      <Icons.image className="w-full h-auto text-muted-foreground" />
-                    </AvatarFallback>
                   </Avatar>
                 </div>
               )}
