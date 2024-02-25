@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Avatar } from "../ui/avatar";
 import {
   Drawer,
   DrawerClose,
@@ -20,9 +20,9 @@ import {
 import { useState } from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { Icons } from "../icons";
-import { FILES_SERVER } from "@/app/_internal/apiUtil";
 import Image from "next/image";
+
+const FILES_SERVER = process.env.NEXT_PUBLIC_FILES;
 
 export default function ProjectCard({ project }: { project: Project }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
