@@ -1,5 +1,4 @@
 import { getSkills } from "@/app/_internal/apiUtil";
-import ProjectCard from "./project-card";
 import SkillCard from "./skill-card";
 
 export default async function SkillsSection() {

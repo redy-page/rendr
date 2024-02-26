@@ -1,8 +1,10 @@
 import { getProjects } from "@/app/_internal/apiUtil";
 import ProjectCard from "./project-card";
+import { sortProjects } from "@/lib/utils";
 
 export default async function ProjectsSection() {
-  const projects = await getProjects();
+  let projects = await getProjects();
+  projects = sortProjects(projects);
   return (
     projects &&
     projects.length > 0 && (
