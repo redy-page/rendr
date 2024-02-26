@@ -12,9 +12,13 @@ export default function ExperienceElement({
         {element.company.name} - {element.location}
       </p>
       <time className="text-xs tracki uppercase text-muted-foreground">
-        {`${element.stMonth} ${element.stYear} - ${element.endMonth} ${element.endYear}`}
+        {`${element.stMonth} ${element.stYear}` +
+          " - " +
+          (element.current
+            ? "Present"
+            : `${element.endMonth} ${element.endYear}`)}
       </time>
-      <p className="mt-3 whitespace-pre-line text-left break-normal text-sm">
+      <p className="mt-3 whitespace-pre-line text-left break-normal text-sm max-w-lg">
         {element.description}
       </p>
     </div>
