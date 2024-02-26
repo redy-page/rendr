@@ -12,9 +12,7 @@ export default async function EducationSection() {
           id="education"
           className="min-h-screen flex flex-col justify-center items-center md:pt-20 py-8"
         >
-          <div className=" flex flex-1 flex-col items-center justify-center">
-            <Timeline type="Education" elements={education} />
-          </div>
+          <Timeline type="Education" elements={education} />
         </section>
         <span className="mt-1 w-[50%] mx-auto block border-t" />
       </>

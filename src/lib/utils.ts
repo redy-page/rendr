@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { Experience } from "./types";
+import { Experience, Project } from "./types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -52,6 +52,20 @@ export const sortExperiences = (experience: Experience[]) => {
       Number(a.endYear + "" + monthsToNumber.get(a.endMonth))
   );
   return [...currentJobs, ...previousJobs];
+};
+
+export const sortProjects = (projects: Project[]) => {
+  const currYear = new Date().getFullYear();
+  projects.sort(
+    (a, b) =>
+      Number(
+        (b.year ?? currYear) + "" + monthsToNumber.get(b.month ?? "December")
+      ) -
+      Number(
+        (a.year ?? currYear) + "" + monthsToNumber.get(a.month ?? "December")
+      )
+  );
+  return projects;
 };
 
 export const isArrNotEmpty = (arr: any[]) => {

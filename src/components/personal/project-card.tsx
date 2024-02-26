@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-import { Avatar } from "../ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
   Drawer,
   DrawerClose,
@@ -20,7 +20,7 @@ import {
 import { useState } from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import Image from "next/image";
+import { Icons } from "../icons";
 
 const FILES_SERVER = process.env.NEXT_PUBLIC_FILES;
 
@@ -29,7 +29,7 @@ export default function ProjectCard({ project }: { project: Project }) {
   return (
     <>
       <Card
-        className="grid gap-4 hover:border-b-primary hover:border-b-2 hover:shadow-lg cursor-pointer"
+        className="grid max-w-xl gap-4 hover:border-b-primary hover:border-b-2 hover:shadow-lg cursor-pointer"
         onClick={() => setDrawerOpen(true)}
       >
         <CardHeader>
@@ -58,12 +58,14 @@ export default function ProjectCard({ project }: { project: Project }) {
               {project.thumbnail && (
                 <div className="flex flex-col md:flex-row md:w-[50%]">
                   <Avatar className="w-full h-auto rounded-none">
-                    <Image
+                    <AvatarImage
                       alt="thumbnail"
                       className="object-contain"
-                      fill={true}
                       src={`${FILES_SERVER}${project.thumbnail}`}
                     />
+                    <AvatarFallback>
+                      <Icons.image className="w-full h-auto text-muted-foreground" />
+                    </AvatarFallback>
                   </Avatar>
                 </div>
               )}
