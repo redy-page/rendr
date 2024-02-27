@@ -9,7 +9,7 @@ export default async function SkillsSection() {
       <>
         <section
           id="skills"
-          className="min-h-screen flex flex-col justify-center items-center md:pt-20 py-8"
+          className="min-h-screen flex flex-col justify-center items-center md:pt-20 py-8 md:px-16"
         >
           <div className="flex flex-1 flex-col items-center justify-center">
             <div className="container max-w-5xl md:px-12 mx-auto">

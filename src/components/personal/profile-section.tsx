@@ -14,7 +14,7 @@ export default async function ProfileSection() {
     <>
       <section
         id="home"
-        className="min-h-screen flex flex-col lg:flex-row justify-center py-12 md:pt-24 gap-8 lg:gap-32  "
+        className="min-h-screen flex flex-col lg:flex-row justify-center py-12 md:px-16 md:pt-24 gap-8 lg:gap-32  "
       >
         <div className="flex flex-col justify-center items-center lg:items-end">
           <div className="text-center">

@@ -11,7 +11,7 @@ export default async function ExperienceSection() {
       <>
         <section
           id="experience"
-          className="min-h-screen flex flex-row justify-center items-center md:pt-20 py-8"
+          className="min-h-screen flex flex-col justify-center items-center md:pt-20 py-8"
         >
           <Timeline type="Experience" elements={experiences} />
         </section>
