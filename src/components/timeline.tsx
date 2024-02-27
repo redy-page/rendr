@@ -8,7 +8,7 @@ export default function Timeline({ type, elements }: TimelineProps) {
   const experiences =
     type === "Experience" ? (elements as Experience[]) : undefined;
   return (
-    <div className="max-w-5xl px-4 py-12 mx-auto">
+    <div className="max-w-4xl px-6 md:px-16 py-12 mx-auto">
       <div className="grid gap-4 mx-4 sm:grid-cols-12">
         <div className="col-span-12 sm:col-span-3">
           <div className="text-center sm:text-left mb-14 before:block before:w-24 before:h-3 before:mb-5 before:rounded-md before:mx-auto sm:before:mx-0 before:bg-primary">

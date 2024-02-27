@@ -21,8 +21,8 @@ export default async function ContactSection() {
             <div className="flex flex-row flex-1 md:px-8 justify-center items-center">
               <div className="grid gap-4 text-center">
                 <span className="max-w-md mb-2">
-                  Have something to say? Interested in collaboration? Shoot me
-                  an email, and I will get back to you pronto!
+                  Want to say hello? Interested in collaboration? Shoot me an
+                  email, and I will get back to you pronto!
                 </span>
                 <Link href={"mailto:" + email}>
                   {" "}
