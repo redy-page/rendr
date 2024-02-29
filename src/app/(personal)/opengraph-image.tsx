@@ -13,7 +13,7 @@ export default async function Image() {
           <div tw="flex flex-col justify-center items-center">
             {avatar && (
               <img
-                src={avatar}
+                src={`https://redy.page${avatar}`}
                 tw="w-48 h-48 rounded-full object-cover"
                 alt="Avatar"
               />
