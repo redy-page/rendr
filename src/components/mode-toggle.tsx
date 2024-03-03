@@ -15,18 +15,20 @@ export default function ModeToggle() {
 
   return (
     <>
-      {currTheme !== "dark" && (
-        <Icons.moon
-          onClick={() => setTheme("dark")}
-          className="hover:text-primary cursor-pointer"
-        />
-      )}
-      {currTheme === "dark" && (
-        <Icons.sun
-          onClick={() => setTheme("light")}
-          className="hover:text-primary cursor-pointer"
-        />
-      )}
+      <div className="flex items-center">
+        {currTheme !== "dark" && (
+          <Icons.moon
+            onClick={() => setTheme("dark")}
+            className="hover:text-primary cursor-pointer"
+          />
+        )}
+        {currTheme === "dark" && (
+          <Icons.sun
+            onClick={() => setTheme("light")}
+            className="hover:text-primary cursor-pointer"
+          />
+        )}
+      </div>
     </>
   );
 }

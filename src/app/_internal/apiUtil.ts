@@ -31,10 +31,7 @@ export const getProfile = async () => {
   return {
     profile: page.personal.profile,
     resume: page.personal.resume,
-    avatar:
-      process.env.NODE_ENV === "production"
-        ? page.personal.profilePicture
-        : undefined,
+    avatar: page.personal.profilePicture,
   };
 };
 
