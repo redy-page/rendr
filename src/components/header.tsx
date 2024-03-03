@@ -23,59 +23,61 @@ export default function Header({
             {profileName}
           </Link>
         </div>
-        <nav className="items-stretch hidden space-x-8 md:flex">
-          <ScrollLink
-            to="home"
-            smooth={true}
-            className="flex hover:text-primary cursor-pointer"
-          >
-            Home
-          </ScrollLink>
-          {isArrNotEmpty(page.personal.education) && (
+        <nav className="flex md:space-x-5 lg:space-x-8">
+          <div className="md:flex md:space-x-5 lg:space-x-8 hidden">
             <ScrollLink
-              to="education"
+              to="home"
               smooth={true}
               className="flex hover:text-primary cursor-pointer"
             >
-              Education
+              Home
             </ScrollLink>
-          )}
-          {isArrNotEmpty(page.personal.experiences) && (
+            {isArrNotEmpty(page.personal.education) && (
+              <ScrollLink
+                to="education"
+                smooth={true}
+                className="flex hover:text-primary cursor-pointer"
+              >
+                Education
+              </ScrollLink>
+            )}
+            {isArrNotEmpty(page.personal.experiences) && (
+              <ScrollLink
+                to="experience"
+                smooth={true}
+                className="flex hover:text-primary cursor-pointer"
+              >
+                Experience
+              </ScrollLink>
+            )}
+            {isArrNotEmpty(page.personal.skills) && (
+              <ScrollLink
+                to="skills"
+                smooth={true}
+                className="flex hover:text-primary cursor-pointer"
+              >
+                Skills
+              </ScrollLink>
+            )}
+            {isArrNotEmpty(page.personal.projects) && (
+              <ScrollLink
+                to="projects"
+                smooth={true}
+                className="flex hover:text-primary cursor-pointer"
+              >
+                Projects
+              </ScrollLink>
+            )}
             <ScrollLink
-              to="experience"
+              to="contact"
               smooth={true}
               className="flex hover:text-primary cursor-pointer"
             >
-              Experience
+              Contact
             </ScrollLink>
-          )}
-          {isArrNotEmpty(page.personal.skills) && (
-            <ScrollLink
-              to="skills"
-              smooth={true}
-              className="flex hover:text-primary cursor-pointer"
-            >
-              Skills
-            </ScrollLink>
-          )}
-          {isArrNotEmpty(page.personal.projects) && (
-            <ScrollLink
-              to="projects"
-              smooth={true}
-              className="flex hover:text-primary cursor-pointer"
-            >
-              Projects
-            </ScrollLink>
-          )}
-          <ScrollLink
-            to="contact"
-            smooth={true}
-            className="flex hover:text-primary cursor-pointer"
-          >
-            Contact
-          </ScrollLink>
+          </div>
+          <ModeToggle />
         </nav>
-        <ModeToggle />
       </div>
     </header>
   );

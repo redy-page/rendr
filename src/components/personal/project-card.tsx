@@ -21,6 +21,7 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { Icons } from "../icons";
+import Image from "next/image";
 
 const FILES_SERVER = process.env.NEXT_PUBLIC_FILES;
 
@@ -57,16 +58,14 @@ export default function ProjectCard({ project }: { project: Project }) {
             <div className="flex flex-col md:flex-row gap-6 px-4 justify-center items-center">
               {project.thumbnail && (
                 <div className="flex flex-col md:flex-row md:w-[50%]">
-                  <Avatar className="w-full h-auto rounded-none">
-                    <AvatarImage
-                      alt="thumbnail"
-                      className="object-contain"
-                      src={`${FILES_SERVER}${project.thumbnail}`}
-                    />
-                    <AvatarFallback>
-                      <Icons.image className="w-full h-auto text-muted-foreground" />
-                    </AvatarFallback>
-                  </Avatar>
+                  <Image
+                    alt="Project Thumbnail"
+                    width={500}
+                    height={500}
+                    quality={95}
+                    className="w-full h-auto object-contain"
+                    src={`${FILES_SERVER}${project.thumbnail}`}
+                  />
                 </div>
               )}
               <div className="flex flex-1 flex-col text-sm md:flex-row md:text-base">

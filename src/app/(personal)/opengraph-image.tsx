@@ -14,7 +14,8 @@ export default async function Image() {
             {avatar && (
               <img
                 src={`https://redy.page${avatar}`}
-                tw="w-48 h-48 rounded-full object-cover"
+                tw="w-48 h-48 rounded-full"
+                style={{ objectFit: "cover" }}
                 alt="Avatar"
               />
             )}
@@ -22,11 +23,11 @@ export default async function Image() {
               <span tw="text-7xl p-2 mb-3">
                 {profile.firstName} {profile.lastName}
               </span>
-              <span tw="p-2 text-4xl">{profile.headline}</span>
+              <span tw="p-2 text-5xl">{profile.headline}</span>
             </div>
           </div>
-          <div tw="flex absolute right-6 bottom-6 justify-end items-end">
-            <Icons.logoWithSymbol width={200} tw="flex flex-row" />
+          <div tw="flex absolute right-8 bottom-6 justify-end items-end">
+            <Icons.logoWithSymbol width={180} tw="flex flex-row" />
           </div>
         </div>
       </>

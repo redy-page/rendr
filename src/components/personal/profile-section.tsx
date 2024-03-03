@@ -23,7 +23,9 @@ export default async function ProfileSection() {
                 <Image
                   alt="Avatar"
                   src={`${FILES_SERVER}${avatar}`}
-                  fill={true}
+                  width={300}
+                  height={300}
+                  quality={95}
                   className="object-cover"
                 />
               ) : (
