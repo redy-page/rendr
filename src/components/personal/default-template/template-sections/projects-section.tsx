@@ -1,8 +1,8 @@
 import { getProjects } from "@/app/_internal/apiUtil";
-import ProjectCard from "./project-card";
 import { sortProjects } from "@/lib/utils";
+import DefaultProjectCard from "./project-card";
 
-export default async function ProjectsSection() {
+export default async function DefaultProjects() {
   let projects = await getProjects();
   projects = sortProjects(projects);
   return (
@@ -23,7 +23,7 @@ export default async function ProjectsSection() {
               <div className="flex flex-row flex-1 md:px-8">
                 <div className="grid gap-4">
                   {projects.map((project) => (
-                    <ProjectCard key={project.id} project={project} />
+                    <DefaultProjectCard key={project.id} project={project} />
                   ))}
                 </div>
               </div>

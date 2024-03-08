@@ -1,7 +1,7 @@
 import { getEducation } from "@/app/_internal/apiUtil";
-import Timeline from "../timeline";
+import Timeline from "../../../timeline";
 
-export default async function EducationSection() {
+export default async function DefaultEducation() {
   const education = await getEducation();
   education.sort((a, b) => b.endYear - a.endYear);
   return (

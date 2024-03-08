@@ -1,7 +1,7 @@
 import { Skill } from "@/lib/types";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../../../ui/card";
 
-export default function SkillCard({ skill }: { skill: Skill }) {
+export default function DefaultSkillCard({ skill }: { skill: Skill }) {
   return (
     <Card className="grid gap-4 max-w-xl hover:border-b-primary hover:border-b-2 hover:shadow-lg">
       <CardHeader>

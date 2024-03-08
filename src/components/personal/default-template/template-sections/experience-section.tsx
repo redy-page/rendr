@@ -1,8 +1,8 @@
 import { getExperience } from "@/app/_internal/apiUtil";
-import Timeline from "../timeline";
+import Timeline from "../../../timeline";
 import { sortExperiences } from "@/lib/utils";
 
-export default async function ExperienceSection() {
+export default async function DefaultExperience() {
   let experiences = await getExperience();
   experiences = sortExperiences(experiences);
   return (
