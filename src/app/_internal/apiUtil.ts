@@ -1,3 +1,4 @@
+import { PageTemplates } from "@/lib/enums";
 import { Page } from "@/lib/types";
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
@@ -25,6 +26,16 @@ export const fetchPageOrThrow = async () => {
   const page = await fetchPage();
   if (!page.enabled) return notFound();
   return page;
+};
+
+export const getPageType = async () => {
+  const page = await fetchPageOrThrow();
+  return page.type;
+};
+
+export const getPageTemplate = async () => {
+  const page = await fetchPageOrThrow();
+  return page.template as PageTemplates;
 };
 
 export const getProfile = async () => {

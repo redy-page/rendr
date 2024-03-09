@@ -1,7 +1,7 @@
 import { getSkills } from "@/app/_internal/apiUtil";
-import SkillCard from "./skill-card";
+import DefaultSkillCard from "./skill-card";
 
-export default async function SkillsSection() {
+export default async function DefaultSkills() {
   const skills = await getSkills();
   return (
     skills &&
@@ -22,7 +22,7 @@ export default async function SkillsSection() {
                 <div className="flex flex-row flex-1 md:px-8">
                   <div className="grid gap-4">
                     {skills.map((skill) => (
-                      <SkillCard key={skill.id} skill={skill} />
+                      <DefaultSkillCard key={skill.id} skill={skill} />
                     ))}
                   </div>
                 </div>
