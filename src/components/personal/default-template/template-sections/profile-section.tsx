@@ -17,7 +17,7 @@ export default async function DefaultProfile() {
         className="min-h-screen flex flex-col lg:flex-row justify-center py-12 md:px-16 md:pt-24 gap-8 lg:gap-32  "
       >
         <div className="flex flex-col justify-center items-center lg:items-end">
-          <div className="text-center">
+          <div className="text-center max-w-[300px]">
             <Avatar className="w-32 h-32 md:w-48 md:h-48 mb-4 mx-auto">
               {avatar ? (
                 <Image
