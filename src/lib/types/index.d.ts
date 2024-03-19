@@ -117,7 +117,7 @@ export type ArticleCard = {
   id: number;
   title: string;
   pageId: number;
-  thumbnail: ArticleThumbnail;
+  thumbnail: ArticleThumbnail | undefined;
   wordCount: number;
   description: string;
   postTags: ArticleTag[];

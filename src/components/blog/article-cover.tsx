@@ -5,7 +5,7 @@ import { ArticleThumbnail } from "@/lib/types";
 export default function ArticleCover({
   thumbnail,
 }: {
-  thumbnail: ArticleThumbnail;
+  thumbnail: ArticleThumbnail | undefined;
 }) {
   return (
     thumbnail && (
