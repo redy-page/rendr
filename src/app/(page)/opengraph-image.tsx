@@ -1,6 +1,6 @@
 import { Icons } from "@/components/icons";
 import { ImageResponse } from "next/og";
-import { getProfile } from "../_internal/apiUtil";
+import { FILES_SERVER, getProfile } from "../_internal/apiUtil";
 
 export const contentType = "image/png";
 
@@ -13,7 +13,7 @@ export default async function Image() {
           <div tw="flex flex-col justify-center items-center">
             {avatar && (
               <img
-                src={`https://redy.page${avatar}`}
+                src={`${FILES_SERVER}${avatar}`}
                 tw="w-48 h-48 rounded-full"
                 style={{ objectFit: "cover" }}
                 alt="Avatar"

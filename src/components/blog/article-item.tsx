@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import Image from "next/image";
 import { Icons } from "../icons";
+import ArticleThumbnail from "./article-thumbnail";
 
 export default async function ArticleItem({ card }: { card: ArticleCard }) {
   const profile = await fetchProfileForPage();
@@ -20,14 +21,10 @@ export default async function ArticleItem({ card }: { card: ArticleCard }) {
         href={`/post/${card.id}/${makeTitlePretty(card.title)}`}
       >
         <div className="aspect-[1.91/1]">
-          <img
-            className="w-full object-cover rounded-xl aspect-[1.91/1]"
-            src="https://images.unsplash.com/photo-1633114128174-2f8aa49759b0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80"
-            alt="Thumbnail"
-          />
+          <ArticleThumbnail articleMeta={card} />
         </div>
         <div className="my-5">
-          <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 dark:group-hover:text-white group-hover:text-black">
+          <h3 className="text-xl md:text-2xl font-semibold text-gray-700 dark:text-gray-300 dark:group-hover:text-white group-hover:text-black">
             {card.title}
           </h3>
 

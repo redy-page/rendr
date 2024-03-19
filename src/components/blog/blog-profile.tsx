@@ -8,8 +8,8 @@ export default async function BlogProfile() {
   const profile = await fetchProfileForPage();
   return (
     <>
-      <div className="hidden lg:flex flex-col w-[24rem] py-16 border-s ">
-        <div className="fixed px-8">
+      <div className="hidden xl:flex flex-col w-[20rem] border-s mx-auto items-center pt-[10rem]">
+        <div className="fixed px-8 mx-auto">
           <div className="flex flex-col">
             <div className="text-center max-w-[300px]">
               <Avatar className="w-48 h-48 mx-auto">
@@ -35,11 +35,15 @@ export default async function BlogProfile() {
               <SocialIcons socials={profile.socials} />
             </div>
           </div>
-          <div className="flex flex-col m-auto items-center mt-4">
-            <p className="whitespace-pre-line break-normal text-left text-sm">
-              {profile.profile.about}
-            </p>
-          </div>
+          {
+            /* if only blog */ false && (
+              <div className="flex flex-col m-auto items-center mt-4">
+                <p className="whitespace-pre-line break-normal text-left text-sm">
+                  {profile.profile.about}
+                </p>
+              </div>
+            )
+          }
         </div>
       </div>
     </>

@@ -25,8 +25,7 @@ export default async function ArticlesPage({
   if (isNaN(PAGE) || PAGE === 0) return notFound();
   const SIZE = 2;
   const posts = await fetchArticleCards(PAGE, SIZE);
-
-  if (PAGE > posts.totalPages) return notFound();
+  if (PAGE !== 1 && PAGE > posts.totalPages) return notFound();
   const profile = await fetchProfileForPage();
   return (
     <>
@@ -42,13 +41,18 @@ export default async function ArticlesPage({
 
         {posts.content.length == 0 && (
           <div className="flex flex-col justify-center items-center max-w-md text-center m-auto">
-            <h2 className="mb-8 text-center font-extrabold text-5xl">
+            <h2 className="mb-8 text-center font-extrabold text-xl">
               No Posts yet!
             </h2>
           </div>
         )}
-        <div className={cn("grid sm:grid-cols-2 gap-8 lg:grid-cols-3")}>
-          {posts.content.length > 0 && (
+        <div
+          className={cn(
+            "grid sm:grid-cols-2 gap-8",
+            posts.content?.length > 2 && "lg:grid-cols-3"
+          )}
+        >
+          {posts.content && posts.content.length > 0 && (
             <>
               {posts.content.map((card) => (
                 <ArticleItem key={card.id} card={card} />

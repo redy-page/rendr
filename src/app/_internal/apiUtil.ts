@@ -108,6 +108,22 @@ export const fetchArticleCards = async (
   return res.json();
 };
 
+export const fetchArticleCard = async (
+  postId: number
+): Promise<ArticleCard> => {
+  const res = await fetch(`${API_URL_SERVER}${domain}/post/${postId}/meta`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (res.status == 404) return notFound();
+  if (!res.ok) {
+    throw new Error("Something went wrong, Please try again");
+  }
+  return res.json();
+};
+
 export const fetchArticle = async (postId: number): Promise<Article> => {
   const res = await fetch(`${API_URL_SERVER}${domain}/post/${postId}`, {
     method: "GET",
