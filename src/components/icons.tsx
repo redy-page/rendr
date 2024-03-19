@@ -5,6 +5,11 @@ import {
   AvatarIcon,
   ImageIcon,
   EnvelopeClosedIcon,
+  EyeOpenIcon,
+  ReaderIcon,
+  HeartIcon,
+  HeartFilledIcon,
+  Share1Icon,
 } from "@radix-ui/react-icons";
 
 export const Icons = {
@@ -13,6 +18,11 @@ export const Icons = {
   user: AvatarIcon,
   image: ImageIcon,
   envelope: EnvelopeClosedIcon,
+  eye: EyeOpenIcon,
+  reader: ReaderIcon,
+  heart: HeartIcon,
+  heartFilled: HeartFilledIcon,
+  share: Share1Icon,
   logo: ({ ...props }: SVGAttributes) => (
     <svg
       aria-hidden="true"

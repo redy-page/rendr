@@ -9,6 +9,7 @@ export type Page = {
   enabled: boolean;
   template: string;
   personal: Personal;
+  blogEnabled: boolean;
 };
 
 export type Personal = {
@@ -92,4 +93,39 @@ export type Social = {
 export type TimelineProps = {
   type: "Experience" | "Education";
   elements: Experience[] | Education[];
+};
+
+export type Pageable<T> = {
+  content: T[];
+  totalPages: number;
+  totalElements: number;
+};
+
+export type ArticleTag = {
+  id: number;
+  name: string;
+};
+
+export type PersonalProfile = {
+  id: number;
+  profile: Profile;
+  profilePicture: string;
+  socials: Social[];
+};
+
+export type ArticleCard = {
+  id: number;
+  title: string;
+  pageId: number;
+  thumbnail: string;
+  wordCount: number;
+  description: string;
+  postTags: ArticleTag[];
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type Article = ArticleCard & {
+  content: string;
+  likeCount: number;
 };

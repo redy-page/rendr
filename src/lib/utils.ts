@@ -71,3 +71,11 @@ export const sortProjects = (projects: Project[]) => {
 export const isArrNotEmpty = (arr: any[]) => {
   return arr && arr.length > 0;
 };
+
+export const makeTitlePretty = (title: string) => {
+  return title
+    .toLowerCase()
+    .replace(/[^\w ]+/g, "")
+    .replace(/ +/g, "-")
+    .replace(/-$/, "");
+};
