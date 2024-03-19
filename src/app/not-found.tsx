@@ -9,7 +9,7 @@ export default function NotFound() {
           <div className="max-w-md text-center">
             <h2 className="mb-8 font-extrabold text-6xl">
               <a href="https://redy.page">
-                <Icons.logo className="px-16" />
+                <Icons.logoWithSymbol className="px-16" />
               </a>
               <span className="sr-only">Error</span>404
             </h2>
