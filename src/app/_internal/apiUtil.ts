@@ -13,10 +13,10 @@ export const API_URL_SERVER = process.env.NEXT_INTERNAL_API_URL;
 
 export const FILES_SERVER = process.env.NEXT_PUBLIC_FILES;
 
-const domain = headers().get("host");
+const getDomain = () => headers().get("host");
 
 export const fetchPage = async (): Promise<Page> => {
-  const res = await fetch(`${API_URL_SERVER}${domain}`, {
+  const res = await fetch(`${API_URL_SERVER}${getDomain()}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -94,7 +94,7 @@ export const fetchArticleCards = async (
   size: number
 ): Promise<Pageable<ArticleCard>> => {
   const res = await fetch(
-    `${API_URL_SERVER}${domain}/post?page=${page - 1}&size=${size}`,
+    `${API_URL_SERVER}${getDomain()}/post?page=${page - 1}&size=${size}`,
     {
       method: "GET",
       headers: {
@@ -112,12 +112,15 @@ export const fetchArticleCards = async (
 export const fetchArticleCard = async (
   postId: number
 ): Promise<ArticleCard> => {
-  const res = await fetch(`${API_URL_SERVER}${domain}/post/${postId}/meta`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const res = await fetch(
+    `${API_URL_SERVER}${getDomain()}/post/${postId}/meta`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
   if (res.status == 404) return notFound();
   if (!res.ok) {
     throw new Error("Something went wrong, Please try again");
@@ -126,7 +129,7 @@ export const fetchArticleCard = async (
 };
 
 export const fetchArticle = async (postId: number): Promise<Article> => {
-  const res = await fetch(`${API_URL_SERVER}${domain}/post/${postId}`, {
+  const res = await fetch(`${API_URL_SERVER}${getDomain()}/post/${postId}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -140,7 +143,7 @@ export const fetchArticle = async (postId: number): Promise<Article> => {
 };
 
 export const fetchProfileForPage = async (): Promise<PersonalProfile> => {
-  const res = await fetch(`${API_URL_SERVER}${domain}/profile`, {
+  const res = await fetch(`${API_URL_SERVER}${getDomain()}/profile`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
