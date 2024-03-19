@@ -117,12 +117,19 @@ export type ArticleCard = {
   id: number;
   title: string;
   pageId: number;
-  thumbnail: string;
+  thumbnail: ArticleThumbnail;
   wordCount: number;
   description: string;
   postTags: ArticleTag[];
   createdAt: number;
   updatedAt: number;
+};
+
+export type ArticleThumbnail = {
+  image: string;
+  photoBy: string;
+  photoByLink: string;
+  isUnsplash: boolean;
 };
 
 export type Article = ArticleCard & {

@@ -11,6 +11,7 @@ import "highlight.js/styles/atom-one-dark.css";
 import { Avatar } from "@/components/ui/avatar";
 import Image from "next/image";
 import { Icons } from "@/components/icons";
+import ArticleCover from "@/components/blog/article-cover";
 
 type Props = {
   params: { postId: string; title: string };
@@ -48,11 +49,11 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <>
-      <div className="max-w-3xl px-6 pt-6 lg:pt-10 pb-12 lg:px-8 mx-auto">
+      <div className="max-w-4xl px-6 pt-6 lg:pt-10 pb-12 lg:px-8 mx-auto">
         <div className="mx-auto">
           <div className="space-y-5 md:space-y-8">
             <div className="space-y-5">
-              <h2 className="text-2xl font-bold md:text-5xl dark:text-white text-center">
+              <h2 className="max-w-4xl text-2xl font-bold md:text-4xl dark:text-white text-center mx-auto">
                 {post.title}
               </h2>
               <div className="flex justify-center items-center px-5">
@@ -90,7 +91,12 @@ export default async function ArticlePage({ params }: Props) {
                 </div>
               </div>
             </div>
-            <div className="post-md-content p-1 text-lg">{content}</div>
+            <div className="max-w-3xl mx-auto">
+              <ArticleCover thumbnail={post.thumbnail} />
+            </div>
+            <div className="post-md-content px-2 text-lg max-w-3xl mx-auto">
+              {content}
+            </div>
 
             <div>
               {post.postTags.map((tag) => (
