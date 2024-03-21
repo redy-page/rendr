@@ -2,6 +2,7 @@ import { PageTemplates } from "@/lib/enums";
 import {
   Article,
   ArticleCard,
+  ArticleTagCount,
   Page,
   Pageable,
   PersonalProfile,
@@ -12,12 +13,15 @@ export const API_URL_SERVER = process.env.NEXT_INTERNAL_API_URL;
 
 export const FILES_SERVER = process.env.NEXT_PUBLIC_FILES;
 
-export const fetchPage = async (): Promise<Page> => {
-  const res = await fetch(`${API_URL_SERVER}${getDomain()}`, {
+const getDomain = () => "jmadupalli.redy.page";
+
+export const customFetchGet = async <T>(url: string): Promise<T> => {
+  const res = await fetch(url, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
+    next: { revalidate: 300 },
   });
   if (res.status == 404) return notFound();
   if (!res.ok) {
@@ -27,7 +31,7 @@ export const fetchPage = async (): Promise<Page> => {
 };
 
 export const fetchPageOrThrow = async () => {
-  const page = await fetchPage();
+  const page = await customFetchGet<Page>(`${API_URL_SERVER}${getDomain()}`);
   if (!page.enabled) return notFound();
   return page;
 };
@@ -88,67 +92,38 @@ export const getContact = async () => {
 
 export const fetchArticleCards = async (
   page: number,
-  size: number
+  size: number,
+  tag?: string
 ): Promise<Pageable<ArticleCard>> => {
-  const res = await fetch(
-    `${API_URL_SERVER}${getDomain()}/post?page=${page - 1}&size=${size}`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
+  return customFetchGet<Pageable<ArticleCard>>(
+    `${API_URL_SERVER}${getDomain()}/post?page=${page - 1}&size=${size}${
+      tag !== undefined ? `&tag=${tag}` : ""
+    }`
   );
-  if (res.status == 404) return notFound();
-  if (!res.ok) {
-    throw new Error("Something went wrong, Please try again");
-  }
-  return res.json();
 };
 
 export const fetchArticleCard = async (
   postId: number
 ): Promise<ArticleCard> => {
-  const res = await fetch(
-    `${API_URL_SERVER}${getDomain()}/post/${postId}/meta`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
+  return customFetchGet<ArticleCard>(
+    `${API_URL_SERVER}${getDomain()}/post/${postId}/meta`
   );
-  if (res.status == 404) return notFound();
-  if (!res.ok) {
-    throw new Error("Something went wrong, Please try again");
-  }
-  return res.json();
 };
 
 export const fetchArticle = async (postId: number): Promise<Article> => {
-  const res = await fetch(`${API_URL_SERVER}${getDomain()}/post/${postId}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  if (res.status == 404) return notFound();
-  if (!res.ok) {
-    throw new Error("Something went wrong, Please try again");
-  }
-  return res.json();
+  return customFetchGet<Article>(
+    `${API_URL_SERVER}${getDomain()}/post/${postId}`
+  );
 };
 
 export const fetchProfileForPage = async (): Promise<PersonalProfile> => {
-  const res = await fetch(`${API_URL_SERVER}${getDomain()}/profile`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  if (res.status == 404) return notFound();
-  if (!res.ok) {
-    throw new Error("Something went wrong, Please try again");
-  }
-  return res.json();
+  return customFetchGet<PersonalProfile>(
+    `${API_URL_SERVER}${getDomain()}/profile`
+  );
+};
+
+export const fetchArticleTagCounts = async (): Promise<ArticleTagCount[]> => {
+  return customFetchGet<ArticleTagCount[]>(
+    `${API_URL_SERVER}${getDomain()}/post/tags`
+  );
 };

@@ -59,7 +59,7 @@ export default async function ArticlePage({ params }: Props) {
               <div className="flex justify-center items-center px-5">
                 <div className="flex-shrink-0 mr-1">
                   <Avatar className="w-10 h-10">
-                    {false ? (
+                    {profile.profilePicture ? (
                       <Image
                         src={FILES_SERVER + profile.profilePicture}
                         width={40}
@@ -99,9 +99,9 @@ export default async function ArticlePage({ params }: Props) {
             </div>
 
             <div>
-              {post.postTags.map((tag) => (
+              {post.postTags.map((tag, i) => (
                 <p
-                  key={tag.id}
+                  key={i}
                   className="m-1 inline-flex items-center gap-1.5 py-2 px-3 rounded-full text-sm bg-secondary"
                 >
                   {tag.name}

@@ -30,9 +30,9 @@ export default async function ArticleItem({ card }: { card: ArticleCard }) {
 
           <div className="flex items-center justify-between">
             <div className="my-1">
-              {card.postTags.map((tag) => (
+              {card.postTags.map((tag, i) => (
                 <p
-                  key={tag.id}
+                  key={i}
                   className="inline-flex items-center mr-1 py-1.5 px-3 rounded-md text-xs font-medium bg-secondary"
                 >
                   {tag.name}

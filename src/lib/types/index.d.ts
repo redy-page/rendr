@@ -102,7 +102,6 @@ export type Pageable<T> = {
 };
 
 export type ArticleTag = {
-  id: number;
   name: string;
 };
 
@@ -135,4 +134,8 @@ export type ArticleThumbnail = {
 export type Article = ArticleCard & {
   content: string;
   likeCount: number;
+};
+
+export type ArticleTagCount = ArticleTag & {
+  count: number;
 };
