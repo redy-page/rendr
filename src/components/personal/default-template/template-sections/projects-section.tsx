@@ -1,9 +1,12 @@
-import { getProjects } from "@/app/_internal/apiUtil";
 import { sortProjects } from "@/lib/utils";
 import DefaultProjectCard from "./project-card";
+import { Project } from "@/lib/types";
 
-export default async function DefaultProjects() {
-  let projects = await getProjects();
+export default async function DefaultProjects({
+  projects,
+}: {
+  projects: Project[];
+}) {
   projects = sortProjects(projects);
   return (
     projects &&

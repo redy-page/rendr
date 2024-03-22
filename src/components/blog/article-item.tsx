@@ -1,16 +1,20 @@
 /* eslint-disable @next/next/no-img-element */
 import { FILES_SERVER, fetchProfileForPage } from "@/app/_internal/apiUtil";
-import { ArticleCard } from "@/lib/types";
-import { makeTitlePretty } from "@/lib/utils";
+import { ArticleCard, AuthorProfile } from "@/lib/types";
+import { getTextFromMD, makeTitlePretty } from "@/lib/utils";
 import Link from "next/link";
-import { Avatar, AvatarImage } from "../ui/avatar";
+import { Avatar } from "../ui/avatar";
 import Image from "next/image";
 import { Icons } from "../icons";
 import ArticleThumbnail from "./article-thumbnail";
 
-export default async function ArticleItem({ card }: { card: ArticleCard }) {
-  const profile = await fetchProfileForPage();
-
+export default async function ArticleItem({
+  card,
+  profile,
+}: {
+  card: ArticleCard;
+  profile: AuthorProfile;
+}) {
   const readCalculation = () => Math.ceil(card.wordCount / 180);
 
   const createdAt = new Date(card.createdAt);
@@ -48,15 +52,15 @@ export default async function ArticleItem({ card }: { card: ArticleCard }) {
             </div>
           </div>
           <p className="mt-3 text-gray-600 dark:text-gray-400">
-            {card.description.replace(/[^\w ]/g, " ")}...
+            {getTextFromMD(card.description)}...
           </p>
         </div>
         <div className="mt-auto flex items-center justify-between gap-x-3">
           <div className="flex items-center">
             <Avatar className="w-8 h-8">
-              {profile.profilePicture ? (
+              {profile.picture ? (
                 <Image
-                  src={FILES_SERVER + profile.profilePicture}
+                  src={FILES_SERVER + profile.picture}
                   width={32}
                   height={32}
                   alt="Avatar"
@@ -67,7 +71,7 @@ export default async function ArticleItem({ card }: { card: ArticleCard }) {
             </Avatar>
             <div>
               <h5 className="ml-2 text-sm text-muted-foreground font-semibold">
-                {profile.profile.firstName} {profile.profile.lastName}
+                {profile.name}
               </h5>
             </div>
           </div>

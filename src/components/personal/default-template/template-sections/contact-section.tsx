@@ -1,10 +1,15 @@
-import { getContact } from "@/app/_internal/apiUtil";
 import { Icons } from "../../../icons";
 import SocialIcons from "../../social-icons";
 import Link from "next/link";
+import { Social } from "@/lib/types";
 
-export default async function DefaultContact() {
-  const { email, socials } = await getContact();
+export default async function DefaultContact({
+  email,
+  socials,
+}: {
+  email: string;
+  socials: Social[];
+}) {
   return (
     <section
       id="contact"

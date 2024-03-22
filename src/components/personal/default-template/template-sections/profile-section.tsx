@@ -1,15 +1,23 @@
-import { FILES_SERVER, getProfile, getSocials } from "@/app/_internal/apiUtil";
+import { FILES_SERVER } from "@/app/_internal/apiUtil";
 import { Avatar } from "../../../ui/avatar";
 import SocialIcons from "../../social-icons";
 import { Button } from "../../../ui/button";
 import Link from "next/link";
 import { Icons } from "../../../icons";
 import Image from "next/image";
+import { Profile, Social } from "@/lib/types";
 
-export default async function DefaultProfile() {
-  const { profile, resume, avatar } = await getProfile();
-  const socials = await getSocials();
-
+export default async function DefaultProfile({
+  profile,
+  socials,
+  avatar,
+  resume,
+}: {
+  profile: Profile;
+  socials: Social[];
+  avatar: string | null;
+  resume: string | null;
+}) {
   return (
     <>
       <section

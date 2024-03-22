@@ -1,8 +1,7 @@
-import { getSkills } from "@/app/_internal/apiUtil";
 import DefaultSkillCard from "./skill-card";
+import { Skill } from "@/lib/types";
 
-export default async function DefaultSkills() {
-  const skills = await getSkills();
+export default async function DefaultSkills({ skills }: { skills: Skill[] }) {
   return (
     skills &&
     skills.length > 0 && (

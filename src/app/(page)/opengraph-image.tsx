@@ -1,11 +1,12 @@
+/* eslint-disable @next/next/no-img-element */
 import { Icons } from "@/components/icons";
 import { ImageResponse } from "next/og";
-import { FILES_SERVER, getProfile } from "../_internal/apiUtil";
+import { FILES_SERVER, fetchProfileForPage } from "../_internal/apiUtil";
 
 export const contentType = "image/png";
 
 export default async function Image() {
-  const { profile, avatar } = await getProfile();
+  const { profile, profilePicture: avatar } = await fetchProfileForPage();
   return new ImageResponse(
     (
       <>

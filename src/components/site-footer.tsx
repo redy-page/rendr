@@ -1,15 +1,14 @@
-"use client";
 import * as React from "react";
 import { Icons } from "./icons";
 
-export function SiteFooter({ profileName }: { profileName: string }) {
+export function SiteFooter({ pageTitle }: { pageTitle: string }) {
   const year = new Date().getFullYear();
 
   return (
     <footer>
       <div className="w-full m-auto text-center text-muted-foreground py-8">
         <p className="mb-6 text-foreground">
-          &copy;{year} {profileName}
+          &copy;{year} {pageTitle}
         </p>
         <span>
           <a href="https://redy.page" target="_blank">

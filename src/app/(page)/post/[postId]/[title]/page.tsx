@@ -1,7 +1,7 @@
 import {
   FILES_SERVER,
   fetchArticle,
-  fetchProfileForPage,
+  fetchPageMetaOrThrow,
 } from "@/app/_internal/apiUtil";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -12,6 +12,8 @@ import { Avatar } from "@/components/ui/avatar";
 import Image from "next/image";
 import { Icons } from "@/components/icons";
 import ArticleCover from "@/components/blog/article-cover";
+import { getTextFromMD } from "@/lib/utils";
+import Header from "@/components/header";
 
 type Props = {
   params: { postId: string; title: string };
@@ -24,8 +26,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: post.title,
+    description: getTextFromMD(post.description),
     openGraph: {
       title: post.title,
+      description: post.description,
     },
   };
 }
@@ -34,7 +38,8 @@ export default async function ArticlePage({ params }: Props) {
   const postId = parseInt(params.postId);
   if (isNaN(postId)) return notFound();
   const post = await fetchArticle(postId);
-  const profile = await fetchProfileForPage();
+  const meta = await fetchPageMetaOrThrow();
+  const { personal: profile } = meta;
 
   const { content } = await compileMDX({
     source: post.content,
@@ -49,6 +54,7 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <>
+      <Header meta={meta} />
       <div className="max-w-4xl px-6 pt-6 lg:pt-10 pb-12 lg:px-8 mx-auto">
         <div className="mx-auto">
           <div className="space-y-5 md:space-y-8">

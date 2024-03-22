@@ -1,4 +1,4 @@
-import { PageTypes } from "../enums";
+import { PageTemplates, PageTypes } from "../enums";
 
 export type SVGAttributes = Partial<SVGProps<SVGSVGElement>>;
 
@@ -10,6 +10,10 @@ export type Page = {
   template: string;
   personal: Personal;
   blogEnabled: boolean;
+};
+
+export type PageMeta = Omit<Page, "personal"> & {
+  personal: PersonalProfile;
 };
 
 export type Personal = {
@@ -138,4 +142,9 @@ export type Article = ArticleCard & {
 
 export type ArticleTagCount = ArticleTag & {
   count: number;
+};
+
+export type AuthorProfile = {
+  name: string;
+  picture: string | null;
 };

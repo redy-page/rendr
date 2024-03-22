@@ -1,9 +1,12 @@
-import { getExperience } from "@/app/_internal/apiUtil";
 import Timeline from "../../../timeline";
 import { sortExperiences } from "@/lib/utils";
+import { Experience } from "@/lib/types";
 
-export default async function DefaultExperience() {
-  let experiences = await getExperience();
+export default async function DefaultExperience({
+  experiences,
+}: {
+  experiences: Experience[];
+}) {
   experiences = sortExperiences(experiences);
   return (
     experiences &&

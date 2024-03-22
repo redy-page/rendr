@@ -1,11 +1,15 @@
-import { FILES_SERVER, fetchProfileForPage } from "@/app/_internal/apiUtil";
+import { FILES_SERVER } from "@/app/_internal/apiUtil";
 import { Avatar } from "../ui/avatar";
 import { Icons } from "../icons";
 import Image from "next/image";
 import SocialIcons from "../personal/social-icons";
+import { PersonalProfile } from "@/lib/types";
 
-export default async function BlogProfile() {
-  const profile = await fetchProfileForPage();
+export default async function BlogProfile({
+  profile,
+}: {
+  profile: PersonalProfile;
+}) {
   return (
     <>
       <div className="hidden xl:flex flex-col w-[20rem] border-s mx-auto items-center pt-[10rem]">

@@ -1,6 +1,6 @@
 import {
   fetchArticleCards,
-  fetchProfileForPage,
+  fetchPageMetaOrThrow,
 } from "@/app/_internal/apiUtil";
 import ArticleItem from "@/components/blog/article-item";
 import ArticleTags from "@/components/blog/article-tags";
@@ -32,7 +32,7 @@ export default async function ArticlesPage({
   const PAGE_SIZE = 9;
   const posts = await fetchArticleCards(PAGE, PAGE_SIZE, TAG);
   if (PAGE !== 1 && PAGE > posts.totalPages) return notFound();
-  const profile = await fetchProfileForPage();
+  const { personal: profile } = await fetchPageMetaOrThrow();
   return (
     <>
       <section className="max-w-[85rem] px-4 py-6 sm:px-6 lg:px-8 mx-auto">
@@ -61,7 +61,14 @@ export default async function ArticlesPage({
           {posts.content && posts.content.length > 0 && (
             <>
               {posts.content.map((card) => (
-                <ArticleItem key={card.id} card={card} />
+                <ArticleItem
+                  key={card.id}
+                  card={card}
+                  profile={{
+                    name: `${profile.profile.firstName} ${profile.profile.lastName}`,
+                    picture: profile.profilePicture,
+                  }}
+                />
               ))}
             </>
           )}

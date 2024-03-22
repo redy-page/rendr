@@ -1,12 +1,12 @@
-import Header from "@/components/header";
 import { SiteFooter } from "@/components/site-footer";
-import { fetchPageOrThrow, getProfile } from "../_internal/apiUtil";
+import { fetchPageMetaOrThrow, getPageTitle } from "../_internal/apiUtil";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
   const domain = "jmadupalli.redy.page";
 
-  const { profile } = await getProfile();
+  const { personal } = await fetchPageMetaOrThrow();
+  const profile = personal.profile;
 
   return {
     title: {
@@ -32,15 +32,13 @@ export default async function PageLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const page = await fetchPageOrThrow();
-  const profileName = `${page.personal.profile.firstName} ${page.personal.profile.lastName}`;
+  const pageMeta = await fetchPageMetaOrThrow();
 
   return (
     <>
       <div className="flex min-h-screen flex-col">
-        <Header profileName={profileName} page={page} />
         <main className="flex-1">{children}</main>
-        <SiteFooter profileName={profileName} />
+        <SiteFooter pageTitle={getPageTitle(pageMeta)} />
       </div>
     </>
   );

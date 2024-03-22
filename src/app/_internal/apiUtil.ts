@@ -4,6 +4,7 @@ import {
   ArticleCard,
   ArticleTagCount,
   Page,
+  PageMeta,
   Pageable,
   PersonalProfile,
 } from "@/lib/types";
@@ -30,6 +31,14 @@ export const customFetchGet = async <T>(url: string): Promise<T> => {
   return res.json();
 };
 
+export const fetchPageMetaOrThrow = async () => {
+  const page = await customFetchGet<PageMeta>(
+    `${API_URL_SERVER}${getDomain()}/meta`
+  );
+  if (!page.enabled) return notFound();
+  return page;
+};
+
 export const fetchPageOrThrow = async () => {
   const page = await customFetchGet<Page>(`${API_URL_SERVER}${getDomain()}`);
   if (!page.enabled) return notFound();
@@ -44,50 +53,6 @@ export const getPageType = async () => {
 export const getPageTemplate = async () => {
   const page = await fetchPageOrThrow();
   return page.template as PageTemplates;
-};
-
-export const getProfile = async () => {
-  const page = await fetchPageOrThrow();
-  return {
-    profile: page.personal.profile,
-    resume: page.personal.resume,
-    avatar: page.personal.profilePicture,
-  };
-};
-
-export const getProfileName = async () => {
-  const profile = await getProfile();
-  return `${profile.profile.firstName} ${profile.profile.lastName}`;
-};
-
-export const getSocials = async () => {
-  const page = await fetchPageOrThrow();
-  return page.personal.socials;
-};
-
-export const getEducation = async () => {
-  const page = await fetchPageOrThrow();
-  return page.personal.education;
-};
-
-export const getExperience = async () => {
-  const page = await fetchPageOrThrow();
-  return page.personal.experiences;
-};
-
-export const getProjects = async () => {
-  const page = await fetchPageOrThrow();
-  return page.personal.projects;
-};
-
-export const getSkills = async () => {
-  const page = await fetchPageOrThrow();
-  return page.personal.skills;
-};
-
-export const getContact = async () => {
-  const page = await fetchPageOrThrow();
-  return { email: page.personal.profile.email, socials: page.personal.socials };
 };
 
 export const fetchArticleCards = async (
@@ -126,4 +91,8 @@ export const fetchArticleTagCounts = async (): Promise<ArticleTagCount[]> => {
   return customFetchGet<ArticleTagCount[]>(
     `${API_URL_SERVER}${getDomain()}/post/tags`
   );
+};
+
+export const getPageTitle = (meta: PageMeta | Page) => {
+  return `${meta.personal.profile.firstName} ${meta.personal.profile.lastName}`;
 };
