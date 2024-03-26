@@ -19,7 +19,10 @@ export async function generateMetadata(): Promise<Metadata> {
     generator: "redy.page",
     metadataBase: new URL("https://" + domain),
     openGraph: {
-      title: `${profile.firstName} ${profile.lastName} - ${profile.headline}`,
+      title: {
+        template: `%s | ${profile.firstName} ${profile.lastName}`,
+        default: `${profile.firstName} ${profile.lastName} - ${profile.headline}`,
+      },
       description: profile.about,
       url: "https://" + domain,
       type: "website",

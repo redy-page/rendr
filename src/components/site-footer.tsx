@@ -7,7 +7,7 @@ export function SiteFooter({ pageTitle }: { pageTitle: string }) {
   return (
     <footer>
       <div className="w-full m-auto text-center text-muted-foreground py-8">
-        <p className="mb-6 text-foreground">
+        <p className="mb-6 text-muted-foreground">
           &copy;{year} {pageTitle}
         </p>
         <span>

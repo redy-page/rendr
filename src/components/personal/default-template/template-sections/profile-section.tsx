@@ -26,7 +26,7 @@ export default async function DefaultProfile({
       >
         <div className="flex flex-col justify-center items-center lg:items-end">
           <div className="text-center max-w-[300px]">
-            <Avatar className="w-32 h-32 md:w-48 md:h-48 mb-4 mx-auto">
+            <Avatar className="w-32 h-32 md:w-40 md:h-40 mb-4 mx-auto">
               {avatar ? (
                 <Image
                   alt="Avatar"

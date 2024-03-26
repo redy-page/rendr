@@ -16,7 +16,7 @@ export default async function BlogProfile({
         <div className="fixed px-8 mx-auto">
           <div className="flex flex-col">
             <div className="text-center max-w-[300px]">
-              <Avatar className="w-48 h-48 mx-auto">
+              <Avatar className="w-40 h-40 mx-auto mb-1.5">
                 {profile.profilePicture ? (
                   <Image
                     alt="Avatar"

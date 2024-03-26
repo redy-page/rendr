@@ -19,6 +19,9 @@ import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Blog",
+  openGraph: {
+    title: "Blog",
+  },
 };
 
 export default async function ArticlesPage({

@@ -28,7 +28,7 @@ export default async function ArticleOGImage({
             <img
               src={
                 articleMeta.thumbnail.isUnsplash
-                  ? articleMeta.thumbnail.image + "&w=1080"
+                  ? articleMeta.thumbnail.image + "&w=1200&h=630"
                   : articleMeta.thumbnail.image
               }
               alt="Article Cover"
