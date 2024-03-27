@@ -4,4 +4,5 @@ export enum PageTypes {
 
 export enum PageTemplates {
   P_DEFAULT = "p_default",
+  P_CHRONARK = "p_chronark",
 }

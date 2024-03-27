@@ -36,6 +36,7 @@ export default async function BlogProfile({
                 </p>
                 <p className="text-sm py-1">{profile.profile.headline}</p>
               </span>
+              <span className="mt-1 w-[40%] mx-auto block border-t" />
               <SocialIcons socials={profile.socials} />
             </div>
           </div>

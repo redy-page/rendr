@@ -46,12 +46,12 @@ export const fetchPageOrThrow = async () => {
 };
 
 export const getPageType = async () => {
-  const page = await fetchPageOrThrow();
+  const page = await fetchPageMetaOrThrow();
   return page.type;
 };
 
 export const getPageTemplate = async () => {
-  const page = await fetchPageOrThrow();
+  const page = await fetchPageMetaOrThrow();
   return page.template as PageTemplates;
 };
 

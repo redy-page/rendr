@@ -46,6 +46,7 @@ export default async function DefaultProfile({
               </p>
               <p className="text-sm py-1">{profile.headline}</p>
             </span>
+            <span className="mt-1 w-[40%] mx-auto block border-t" />
             <SocialIcons socials={socials} />
             {resume && (
               <Link href={`${FILES_SERVER}${resume}`} target="_blank">

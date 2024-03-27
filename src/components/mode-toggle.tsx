@@ -3,8 +3,9 @@
 import { useTheme } from "next-themes";
 import { Icons } from "./icons";
 import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
-export default function ModeToggle() {
+export default function ModeToggle({ className }: { className?: string }) {
   const [currTheme, setCurrTheme] = useState<string | undefined>(undefined);
   const { theme, systemTheme, setTheme } = useTheme();
 
@@ -15,7 +16,7 @@ export default function ModeToggle() {
 
   return (
     <>
-      <div className="flex items-center">
+      <div className={cn("flex items-center", className)}>
         {currTheme !== "dark" && (
           <Icons.moon
             onClick={() => setTheme("dark")}
