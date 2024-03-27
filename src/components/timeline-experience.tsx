@@ -1,3 +1,4 @@
+import { Linkify } from "@/lib/helpers";
 import { Experience } from "@/lib/types";
 
 export default function ExperienceElement({
@@ -19,7 +20,7 @@ export default function ExperienceElement({
             : `${element.endMonth} ${element.endYear}`)}
       </time>
       <p className="mt-3 whitespace-pre-line text-left break-normal text-sm max-w-lg">
-        {element.description}
+        <Linkify>{element.description}</Linkify>
       </p>
     </div>
   );

@@ -10,13 +10,14 @@ export default function Header({ meta }: { meta: PageMeta }) {
         <div className="flex gap-6 md:gap-10">
           <Link
             href="/"
+            scroll={false}
             className="items-center space-x-2 flex text-sm md:text-lg lg:text-xl font-bold text-foreground hover:text-primary"
           >
             {getPageTitle(meta)}
           </Link>
         </div>
         <nav className="flex space-x-5 lg:space-x-8">
-          <Link href="/" className="hover:text-primary">
+          <Link href="/" scroll={false} className="hover:text-primary">
             Home
           </Link>
 

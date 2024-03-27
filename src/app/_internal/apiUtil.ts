@@ -14,7 +14,7 @@ export const API_URL_SERVER = process.env.NEXT_INTERNAL_API_URL;
 
 export const FILES_SERVER = process.env.NEXT_PUBLIC_FILES;
 
-const getDomain = () => "jmadupalli.redy.page";
+const getDomain = () => "jaym.redy.page";
 
 export const customFetchGet = async <T>(url: string): Promise<T> => {
   const res = await fetch(url, {
