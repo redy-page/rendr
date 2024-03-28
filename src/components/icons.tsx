@@ -11,6 +11,7 @@ import {
   HeartFilledIcon,
   Share1Icon,
   ClockIcon,
+  ExternalLinkIcon,
 } from "@radix-ui/react-icons";
 
 export const Icons = {
@@ -25,6 +26,7 @@ export const Icons = {
   heartFilled: HeartFilledIcon,
   share: Share1Icon,
   clock: ClockIcon,
+  extLink: ExternalLinkIcon,
   logo: ({ ...props }: SVGAttributes) => (
     <svg
       aria-hidden="true"

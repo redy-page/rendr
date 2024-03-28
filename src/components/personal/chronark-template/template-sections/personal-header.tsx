@@ -7,8 +7,8 @@ import { Page } from "@/lib/types";
 
 export default function ChronarkHeader({ page }: { page: Page }) {
   return (
-    <header className="hidden lg:flex w-full animate-fade-in z-40 p-8 fixed top-0 text-muted-foreground">
-      <nav>
+    <header className="hidden lg:flex w-full animate-fade-in z-40 p-8 fixed text-muted-foreground bg-background">
+      <nav className="flex w-full justify-center items-center">
         <ul className="flex items-center justify-center gap-4">
           <ScrollLink
             to="home"
