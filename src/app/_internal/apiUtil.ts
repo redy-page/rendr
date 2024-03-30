@@ -5,6 +5,7 @@ import {
   ArticleTagCount,
   Page,
   PageMeta,
+  PageProfile,
   Pageable,
   PersonalProfile,
 } from "@/lib/types";
@@ -14,7 +15,7 @@ export const API_URL_SERVER = process.env.NEXT_INTERNAL_API_URL;
 
 export const FILES_SERVER = process.env.NEXT_PUBLIC_FILES;
 
-const getDomain = () => "jaym.redy.page";
+const getDomain = () => "jmadupalli.redy.page";
 
 export const customFetchGet = async <T>(url: string): Promise<T> => {
   const res = await fetch(url, {
@@ -81,10 +82,8 @@ export const fetchArticle = async (postId: number): Promise<Article> => {
   );
 };
 
-export const fetchProfileForPage = async (): Promise<PersonalProfile> => {
-  return customFetchGet<PersonalProfile>(
-    `${API_URL_SERVER}${getDomain()}/profile`
-  );
+export const fetchProfileForPage = async (): Promise<PageProfile> => {
+  return customFetchGet<PageProfile>(`${API_URL_SERVER}${getDomain()}/profile`);
 };
 
 export const fetchArticleTagCounts = async (): Promise<ArticleTagCount[]> => {
@@ -94,5 +93,5 @@ export const fetchArticleTagCounts = async (): Promise<ArticleTagCount[]> => {
 };
 
 export const getPageTitle = (meta: PageMeta | Page) => {
-  return `${meta.personal.profile.firstName} ${meta.personal.profile.lastName}`;
+  return meta.profile.pageTitle;
 };

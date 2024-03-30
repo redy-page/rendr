@@ -8,33 +8,30 @@ export type Page = {
   domain: string;
   enabled: boolean;
   template: string;
-  personal: Personal;
+  profile: PageProfile;
+  personal: PersonalPage;
   blogEnabled: boolean;
 };
 
-export type PageMeta = Omit<Page, "personal"> & {
-  personal: PersonalProfile;
-};
+export type PageMeta = Omit<Page, "personal">;
 
-export type Personal = {
+export type PersonalPage = {
   id: number;
-  profilePicture: string | null;
   resume: string | null;
-  profile: Profile;
   education: Education[];
   experiences: Experience[];
   projects: Project[];
   skills: Skill[];
-  socials: Social[];
 };
 
-export type Profile = {
+export type PageProfile = {
   id: number;
   email: string;
-  firstName: string;
-  lastName: string;
+  pageTitle: string;
+  pagePicture: string;
   headline: string;
   about: string;
+  socials: Social[];
 };
 
 export type School = {
@@ -116,6 +113,12 @@ export type PersonalProfile = {
   socials: Social[];
 };
 
+export type ArticleAuthor = {
+  firstName: string;
+  lastName: string;
+  profilePicture: string;
+};
+
 export type ArticleCard = {
   id: number;
   title: string;
@@ -123,6 +126,7 @@ export type ArticleCard = {
   thumbnail: ArticleThumbnail | undefined;
   wordCount: number;
   description: string;
+  user: ArticleAuthor;
   postTags: ArticleTag[];
   createdAt: number;
   updatedAt: number;
@@ -142,9 +146,4 @@ export type Article = ArticleCard & {
 
 export type ArticleTagCount = ArticleTag & {
   count: number;
-};
-
-export type AuthorProfile = {
-  name: string;
-  picture: string | null;
 };

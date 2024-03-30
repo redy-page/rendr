@@ -18,7 +18,7 @@ export default async function ArticleOGImage({
   const postId = parseInt(params.postId);
   if (isNaN(postId)) return null;
   const articleMeta = await fetchArticleCard(postId);
-  const { personal: profile } = await fetchPageMetaOrThrow();
+  const { profile } = await fetchPageMetaOrThrow();
 
   return new ImageResponse(
     (
@@ -45,9 +45,9 @@ export default async function ArticleOGImage({
             </div>
             <div tw="flex flex-row justify-between px-10 py-6">
               <div tw="flex flex-row text-gray-300 justify-start items-center">
-                {profile.profilePicture && (
+                {profile.pagePicture && (
                   <img
-                    src={`${FILES_SERVER}${profile.profilePicture}`}
+                    src={`${FILES_SERVER}${profile.pagePicture}`}
                     tw="w-18 h-18 rounded-full flex mr-4"
                     style={{ objectFit: "cover" }}
                     alt="Avatar"
@@ -55,7 +55,7 @@ export default async function ArticleOGImage({
                 )}
                 <div tw="flex flex-col mt-2 text-3xl">
                   <span tw="inline-block font-semibold text-5xl">
-                    {profile.profile.firstName} {profile.profile.lastName}
+                    {profile.pageTitle}
                   </span>
                   <span tw="inline-block">
                     {new Date(articleMeta.createdAt).toDateString()} •{" "}

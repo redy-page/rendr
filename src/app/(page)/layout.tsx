@@ -5,25 +5,23 @@ import { Metadata } from "next";
 export async function generateMetadata(): Promise<Metadata> {
   const domain = "jmadupalli.redy.page";
 
-  const { personal } = await fetchPageMetaOrThrow();
-  const profile = personal.profile;
+  const { profile: pageProfile } = await fetchPageMetaOrThrow();
 
   return {
     title: {
-      template: `%s | ${profile.firstName} ${profile.lastName}`,
-      default: `${profile.firstName} ${profile.lastName} - ${profile.headline}`,
+      template: `%s | ${pageProfile.pageTitle}`,
+      default: `${pageProfile.pageTitle} - ${pageProfile.headline}`,
     },
-    description: profile.about,
-    authors: [{ name: `${profile.firstName} ${profile.lastName}` }],
+    description: pageProfile.about,
     publisher: "redy.page",
     generator: "redy.page",
     metadataBase: new URL("https://" + domain),
     openGraph: {
       title: {
-        template: `%s | ${profile.firstName} ${profile.lastName}`,
-        default: `${profile.firstName} ${profile.lastName} - ${profile.headline}`,
+        template: `%s | ${pageProfile.pageTitle}`,
+        default: `${pageProfile.pageTitle} - ${pageProfile.headline}`,
       },
-      description: profile.about,
+      description: pageProfile.about,
       url: "https://" + domain,
       type: "website",
     },
