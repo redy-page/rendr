@@ -9,31 +9,20 @@ import DefaultSkills from "./template-sections/skills-section";
 
 export default async function DefaultPersonal() {
   const page = await fetchPageOrThrow();
-  const {
-    profile,
-    profilePicture: avatar,
-    resume,
-    socials,
-    education,
-    experiences,
-    skills,
-    projects,
-  } = page.personal;
+  const { resume, education, experiences, skills, projects } = page.personal;
 
   return (
     <>
       <DefaultPersonalHeader page={page} />
-      <DefaultProfile
-        profile={profile}
-        avatar={avatar}
-        resume={resume}
-        socials={socials}
-      />
+      <DefaultProfile profile={page.profile} resume={resume} />
       <DefaultEducation education={education} />
       <DefaultExperience experiences={experiences} />
       <DefaultSkills skills={skills} />
       <DefaultProjects projects={projects} />
-      <DefaultContact socials={socials} email={profile.email} />
+      <DefaultContact
+        socials={page.profile?.socials}
+        email={page.profile?.email}
+      />
     </>
   );
 }

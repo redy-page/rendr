@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { FILES_SERVER, fetchProfileForPage } from "@/app/_internal/apiUtil";
-import { ArticleCard, AuthorProfile } from "@/lib/types";
+import { ArticleAuthor, ArticleCard } from "@/lib/types";
 import { getTextFromMD, makeTitlePretty } from "@/lib/utils";
 import Link from "next/link";
 import { Avatar } from "../ui/avatar";
@@ -13,7 +13,7 @@ export default async function ArticleItem({
   profile,
 }: {
   card: ArticleCard;
-  profile: AuthorProfile;
+  profile: ArticleAuthor;
 }) {
   const readCalculation = () => Math.ceil(card.wordCount / 180);
 
@@ -58,9 +58,9 @@ export default async function ArticleItem({
         <div className="mt-auto flex items-center justify-between gap-x-3">
           <div className="flex items-center">
             <Avatar className="w-8 h-8">
-              {profile.picture ? (
+              {profile.profilePicture ? (
                 <Image
-                  src={FILES_SERVER + profile.picture}
+                  src={FILES_SERVER + profile.profilePicture}
                   width={32}
                   height={32}
                   alt="Avatar"
@@ -71,7 +71,7 @@ export default async function ArticleItem({
             </Avatar>
             <div>
               <h5 className="ml-2 text-sm text-muted-foreground font-semibold">
-                {profile.name}
+                {`${profile.firstName} ${profile.lastName}`}
               </h5>
             </div>
           </div>

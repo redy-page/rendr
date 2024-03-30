@@ -3,12 +3,12 @@ import { Avatar } from "../ui/avatar";
 import { Icons } from "../icons";
 import Image from "next/image";
 import SocialIcons from "../personal/social-icons";
-import { PersonalProfile } from "@/lib/types";
+import { PageProfile } from "@/lib/types";
 
 export default async function BlogProfile({
   profile,
 }: {
-  profile: PersonalProfile;
+  profile: PageProfile;
 }) {
   return (
     <>
@@ -17,10 +17,10 @@ export default async function BlogProfile({
           <div className="flex flex-col">
             <div className="text-center max-w-[300px]">
               <Avatar className="w-40 h-40 mx-auto mb-1.5">
-                {profile.profilePicture ? (
+                {profile.pagePicture ? (
                   <Image
                     alt="Avatar"
-                    src={`${FILES_SERVER}${profile.profilePicture}`}
+                    src={`${FILES_SERVER}${profile.pagePicture}`}
                     width={300}
                     height={300}
                     quality={95}
@@ -31,10 +31,8 @@ export default async function BlogProfile({
                 )}
               </Avatar>
               <span className="font-bold text-xl">
-                <p>
-                  {profile.profile.firstName} {profile.profile.lastName}
-                </p>
-                <p className="text-sm py-1">{profile.profile.headline}</p>
+                <p>{profile.pageTitle}</p>
+                <p className="text-sm py-1">{profile.headline}</p>
               </span>
               <SocialIcons socials={profile.socials} />
             </div>
@@ -43,7 +41,7 @@ export default async function BlogProfile({
             /* if only blog */ false && (
               <div className="flex flex-col m-auto items-center mt-4">
                 <p className="whitespace-pre-line break-normal text-left text-sm">
-                  {profile.profile.about}
+                  {profile.about}
                 </p>
               </div>
             )

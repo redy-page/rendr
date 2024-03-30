@@ -35,13 +35,13 @@ export default async function ArticlesPage({
   const PAGE_SIZE = 9;
   const posts = await fetchArticleCards(PAGE, PAGE_SIZE, TAG);
   if (PAGE !== 1 && PAGE > posts.totalPages) return notFound();
-  const { personal: profile } = await fetchPageMetaOrThrow();
+  const { profile } = await fetchPageMetaOrThrow();
   return (
     <>
       <section className="max-w-[85rem] px-4 py-6 sm:px-6 lg:px-8 mx-auto">
         <div className="mx-auto text-center mb-10 lg:mb-14">
           <h2 className="text-2xl max-w-2xl font-bold md:text-4xl md:leading-tight mx-auto">
-            {profile.profile.firstName + "'s"} Blog
+            {profile.pageTitle + "'s"} Blog
           </h2>
         </div>
         <div className="grid mx-auto m-8">
@@ -64,14 +64,7 @@ export default async function ArticlesPage({
           {posts.content && posts.content.length > 0 && (
             <>
               {posts.content.map((card) => (
-                <ArticleItem
-                  key={card.id}
-                  card={card}
-                  profile={{
-                    name: `${profile.profile.firstName} ${profile.profile.lastName}`,
-                    picture: profile.profilePicture,
-                  }}
-                />
+                <ArticleItem key={card.id} card={card} profile={card.user} />
               ))}
             </>
           )}

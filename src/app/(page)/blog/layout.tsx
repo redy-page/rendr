@@ -13,7 +13,7 @@ export default async function BlogLayout({
       <Header meta={pageMeta} />
       <div className="flex min-h-screen flex-col xl:flex-row">
         <main className="flex-1">{children}</main>
-        <BlogProfile profile={pageMeta.personal} />
+        <BlogProfile profile={pageMeta.profile} />
       </div>
     </>
   );

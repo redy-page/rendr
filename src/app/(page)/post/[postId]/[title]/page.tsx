@@ -43,7 +43,6 @@ export default async function ArticlePage({ params }: Props) {
   if (isNaN(postId)) return notFound();
   const post = await fetchArticle(postId);
   const meta = await fetchPageMetaOrThrow();
-  const { personal: profile } = meta;
 
   const articleURL = `https://${headers().get("host")}/post/${params.postId}/${
     params.title
@@ -74,9 +73,9 @@ export default async function ArticlePage({ params }: Props) {
               <div className="flex justify-center items-center px-5">
                 <div className="flex-shrink-0 mr-1">
                   <Avatar className="w-10 h-10">
-                    {profile.profilePicture ? (
+                    {post.user.profilePicture ? (
                       <Image
-                        src={FILES_SERVER + profile.profilePicture}
+                        src={FILES_SERVER + post.user.profilePicture}
                         width={40}
                         height={40}
                         alt="Avatar"
@@ -89,7 +88,7 @@ export default async function ArticlePage({ params }: Props) {
                 <div>
                   <ul className="text-sm text-gray-500">
                     <li className="font-semibold text-gray-800 dark:text-gray-200 inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full dark:before:bg-gray-600">
-                      {profile.profile.firstName} {profile.profile.lastName}
+                      {`${post.user.firstName} ${post.user.lastName}`}
                     </li>
                     <li className="inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full dark:text-gray-400 dark:before:bg-gray-600">
                       {new Date(post.createdAt).toLocaleDateString("en-us", {
