@@ -19,8 +19,8 @@ import {
 import { useState } from "react";
 import { Button } from "../../../ui/button";
 import Link from "next/link";
-import { Icons } from "../../../icons";
 import Image from "next/image";
+import { Linkify } from "@/lib/helpers";
 
 const FILES_SERVER = process.env.NEXT_PUBLIC_FILES;
 
@@ -69,7 +69,7 @@ export default function DefaultProjectCard({ project }: { project: Project }) {
               )}
               <div className="flex flex-1 flex-col text-sm md:flex-row md:text-base">
                 <p className="whitespace-pre-line w-full break-keep">
-                  {project.description}
+                  <Linkify>{project.description}</Linkify>
                 </p>
               </div>
             </div>

@@ -1,3 +1,4 @@
+import { Linkify } from "@/lib/helpers";
 import { Education } from "@/lib/types";
 
 export default function EducationElement({ element }: { element: Education }) {
@@ -13,7 +14,7 @@ export default function EducationElement({ element }: { element: Education }) {
         {element.endMonth && element.endMonth} {element.endYear}
       </time>
       <p className="mt-3 whitespace-pre-line text-left break-normal text-sm">
-        {element.description}
+        <Linkify>{element.description}</Linkify>
       </p>
     </div>
   );

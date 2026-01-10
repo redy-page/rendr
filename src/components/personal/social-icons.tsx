@@ -1,12 +1,19 @@
 "use client";
 import { Social } from "@/lib/types";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 import { SocialIcon } from "react-social-icons";
 
 export default function SocialIcons({ socials }: { socials: Social[] }) {
   const { theme } = useTheme();
 
-  if (!socials || socials.length === 0) return <></>;
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!socials || socials.length === 0 || !mounted) return <></>;
 
   return (
     <>

@@ -1,15 +1,19 @@
-import { FILES_SERVER, getProfile, getSocials } from "@/app/_internal/apiUtil";
+import { FILES_SERVER } from "@/app/_internal/apiUtil";
 import { Avatar } from "../../../ui/avatar";
 import SocialIcons from "../../social-icons";
 import { Button } from "../../../ui/button";
 import Link from "next/link";
 import { Icons } from "../../../icons";
 import Image from "next/image";
+import { PageProfile } from "@/lib/types";
 
-export default async function DefaultProfile() {
-  const { profile, resume, avatar } = await getProfile();
-  const socials = await getSocials();
-
+export default async function DefaultProfile({
+  profile,
+  resume,
+}: {
+  profile: PageProfile;
+  resume: string | null;
+}) {
   return (
     <>
       <section
@@ -18,11 +22,11 @@ export default async function DefaultProfile() {
       >
         <div className="flex flex-col justify-center items-center lg:items-end">
           <div className="text-center max-w-[300px]">
-            <Avatar className="w-32 h-32 md:w-48 md:h-48 mb-4 mx-auto">
-              {avatar ? (
+            <Avatar className="w-32 h-32 md:w-40 md:h-40 mb-4 mx-auto">
+              {profile.pagePicture ? (
                 <Image
                   alt="Avatar"
-                  src={`${FILES_SERVER}${avatar}`}
+                  src={`${FILES_SERVER}${profile.pagePicture}`}
                   width={300}
                   height={300}
                   quality={95}
@@ -33,12 +37,10 @@ export default async function DefaultProfile() {
               )}
             </Avatar>
             <span className="font-bold text-xl">
-              <p>
-                {profile.firstName} {profile.lastName}
-              </p>
+              <p>{profile.pageTitle}</p>
               <p className="text-sm py-1">{profile.headline}</p>
             </span>
-            <SocialIcons socials={socials} />
+            <SocialIcons socials={profile.socials} />
             {resume && (
               <Link href={`${FILES_SERVER}${resume}`} target="_blank">
                 <Button className="mt-2">Resume</Button>

@@ -1,16 +1,20 @@
 /* eslint-disable @next/next/no-img-element */
 import { FILES_SERVER, fetchProfileForPage } from "@/app/_internal/apiUtil";
-import { ArticleCard } from "@/lib/types";
-import { makeTitlePretty } from "@/lib/utils";
+import { ArticleAuthor, ArticleCard } from "@/lib/types";
+import { getTextFromMD, makeTitlePretty } from "@/lib/utils";
 import Link from "next/link";
-import { Avatar, AvatarImage } from "../ui/avatar";
+import { Avatar } from "../ui/avatar";
 import Image from "next/image";
 import { Icons } from "../icons";
 import ArticleThumbnail from "./article-thumbnail";
 
-export default async function ArticleItem({ card }: { card: ArticleCard }) {
-  const profile = await fetchProfileForPage();
-
+export default async function ArticleItem({
+  card,
+  profile,
+}: {
+  card: ArticleCard;
+  profile: ArticleAuthor;
+}) {
   const readCalculation = () => Math.ceil(card.wordCount / 180);
 
   const createdAt = new Date(card.createdAt);
@@ -30,9 +34,9 @@ export default async function ArticleItem({ card }: { card: ArticleCard }) {
 
           <div className="flex items-center justify-between">
             <div className="my-1">
-              {card.postTags.map((tag) => (
+              {card.postTags.map((tag, i) => (
                 <p
-                  key={tag.id}
+                  key={i}
                   className="inline-flex items-center mr-1 py-1.5 px-3 rounded-md text-xs font-medium bg-secondary"
                 >
                   {tag.name}
@@ -48,7 +52,7 @@ export default async function ArticleItem({ card }: { card: ArticleCard }) {
             </div>
           </div>
           <p className="mt-3 text-gray-600 dark:text-gray-400">
-            {card.description.replace(/[^\w ]/g, " ")}...
+            {getTextFromMD(card.description)}...
           </p>
         </div>
         <div className="mt-auto flex items-center justify-between gap-x-3">
@@ -67,7 +71,7 @@ export default async function ArticleItem({ card }: { card: ArticleCard }) {
             </Avatar>
             <div>
               <h5 className="ml-2 text-sm text-muted-foreground font-semibold">
-                {profile.profile.firstName} {profile.profile.lastName}
+                {`${profile.firstName} ${profile.lastName}`}
               </h5>
             </div>
           </div>

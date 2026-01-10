@@ -1,29 +1,28 @@
+/* eslint-disable @next/next/no-img-element */
 import { Icons } from "@/components/icons";
 import { ImageResponse } from "next/og";
-import { FILES_SERVER, getProfile } from "../_internal/apiUtil";
+import { FILES_SERVER, fetchProfileForPage } from "../_internal/apiUtil";
 
 export const contentType = "image/png";
 
 export default async function Image() {
-  const { profile, avatar } = await getProfile();
+  const pageProfile = await fetchProfileForPage();
   return new ImageResponse(
     (
       <>
         <div tw="w-full h-[100vh] flex flex-col justify-center items-center bg-black border-t-[15px] border-red-600">
           <div tw="flex flex-col justify-center items-center">
-            {avatar && (
+            {pageProfile.pagePicture && (
               <img
-                src={`${FILES_SERVER}${avatar}`}
+                src={`${FILES_SERVER}${pageProfile.pagePicture}`}
                 tw="w-48 h-48 rounded-full"
                 style={{ objectFit: "cover" }}
                 alt="Avatar"
               />
             )}
             <div tw="flex flex-col justify-center items-center text-center text-white mt-2">
-              <span tw="text-7xl p-2 mb-3">
-                {profile.firstName} {profile.lastName}
-              </span>
-              <span tw="p-2 text-5xl">{profile.headline}</span>
+              <span tw="text-7xl p-2 mb-3">{pageProfile.pageTitle}</span>
+              <span tw="p-2 text-5xl">{pageProfile.headline}</span>
             </div>
           </div>
           <div tw="flex absolute right-8 bottom-6 justify-end items-end">

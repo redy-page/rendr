@@ -1,4 +1,4 @@
-import { PageTypes } from "../enums";
+import { PageTemplates, PageTypes } from "../enums";
 
 export type SVGAttributes = Partial<SVGProps<SVGSVGElement>>;
 
@@ -8,29 +8,30 @@ export type Page = {
   domain: string;
   enabled: boolean;
   template: string;
-  personal: Personal;
+  profile: PageProfile;
+  personal: PersonalPage;
   blogEnabled: boolean;
 };
 
-export type Personal = {
+export type PageMeta = Omit<Page, "personal">;
+
+export type PersonalPage = {
   id: number;
-  profilePicture: string | null;
   resume: string | null;
-  profile: Profile;
   education: Education[];
   experiences: Experience[];
   projects: Project[];
   skills: Skill[];
-  socials: Social[];
 };
 
-export type Profile = {
+export type PageProfile = {
   id: number;
   email: string;
-  firstName: string;
-  lastName: string;
+  pageTitle: string;
+  pagePicture: string;
   headline: string;
   about: string;
+  socials: Social[];
 };
 
 export type School = {
@@ -102,7 +103,6 @@ export type Pageable<T> = {
 };
 
 export type ArticleTag = {
-  id: number;
   name: string;
 };
 
@@ -113,6 +113,12 @@ export type PersonalProfile = {
   socials: Social[];
 };
 
+export type ArticleAuthor = {
+  firstName: string;
+  lastName: string;
+  profilePicture: string;
+};
+
 export type ArticleCard = {
   id: number;
   title: string;
@@ -120,6 +126,7 @@ export type ArticleCard = {
   thumbnail: ArticleThumbnail | undefined;
   wordCount: number;
   description: string;
+  user: ArticleAuthor;
   postTags: ArticleTag[];
   createdAt: number;
   updatedAt: number;
@@ -135,4 +142,8 @@ export type ArticleThumbnail = {
 export type Article = ArticleCard & {
   content: string;
   likeCount: number;
+};
+
+export type ArticleTagCount = ArticleTag & {
+  count: number;
 };

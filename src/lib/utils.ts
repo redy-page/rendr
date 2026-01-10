@@ -79,3 +79,7 @@ export const makeTitlePretty = (title: string) => {
     .replace(/ +/g, "-")
     .replace(/-$/, "");
 };
+
+export const getTextFromMD = (md: string) => {
+  return md.replace(/[^\w ]/g, " ");
+};
