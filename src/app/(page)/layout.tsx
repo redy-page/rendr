@@ -1,7 +1,8 @@
 import { SiteFooter } from "@/components/site-footer";
-import { fetchPageMetaOrThrow, getPageTitle } from "../_internal/apiUtil";
+import { fetchPageMetaOrThrow } from "../_internal/apiUtil";
 import { Metadata } from "next";
 import { headers } from "next/headers";
+import { getPageTitle } from "@/lib/utils";
 
 export async function generateMetadata(): Promise<Metadata> {
   const domain = headers().get("host");
