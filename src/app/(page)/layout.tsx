@@ -1,9 +1,10 @@
 import { SiteFooter } from "@/components/site-footer";
 import { fetchPageMetaOrThrow, getPageTitle } from "../_internal/apiUtil";
 import { Metadata } from "next";
+import { headers } from "next/headers";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const domain = "jmadupalli.redy.page";
+  const domain = headers().get("host");
 
   const { profile: pageProfile } = await fetchPageMetaOrThrow();
 

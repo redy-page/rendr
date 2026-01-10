@@ -1,4 +1,5 @@
 import { PageTemplates } from "@/lib/enums";
+import { headers } from "next/headers";
 import {
   Article,
   ArticleCard,
@@ -15,10 +16,10 @@ export const API_URL_SERVER = process.env.NEXT_INTERNAL_API_URL;
 
 export const FILES_SERVER = process.env.NEXT_PUBLIC_FILES;
 
-const getDomain = () => "jmadupalli.redy.page";
+const getDomain = () => headers().get("host");
 
-export const customFetchGet = async <T>(url: string): Promise<T> => {
-  const res = await fetch(url, {
+export const fetchPage = async (): Promise<Page> => {
+  const res = await fetch(`${API_URL_SERVER}${getDomain()}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
