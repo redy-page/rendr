@@ -1,7 +1,7 @@
 import Link from "next/link";
 import ModeToggle from "@/components/mode-toggle";
 import { PageMeta } from "@/lib/types";
-import { getPageTitle } from "@/app/_internal/apiUtil";
+import { getPageTitle } from "@/lib/utils";
 
 export default function Header({ meta }: { meta: PageMeta }) {
   return (
