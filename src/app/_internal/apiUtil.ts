@@ -8,7 +8,6 @@ import {
   PageMeta,
   PageProfile,
   Pageable,
-  PersonalProfile,
 } from "@/lib/types";
 import { notFound } from "next/navigation";
 
@@ -18,7 +17,7 @@ export const FILES_SERVER = process.env.NEXT_PUBLIC_FILES;
 
 const getDomain = () => headers().get("host");
 
-export const fetchPage = async (): Promise<Page> => {
+export const customFetchGet = async <T>(url: string): Promise<T> => {
   const res = await fetch(`${API_URL_SERVER}${getDomain()}`, {
     method: "GET",
     headers: {
@@ -91,8 +90,4 @@ export const fetchArticleTagCounts = async (): Promise<ArticleTagCount[]> => {
   return customFetchGet<ArticleTagCount[]>(
     `${API_URL_SERVER}${getDomain()}/post/tags`
   );
-};
-
-export const getPageTitle = (meta: PageMeta | Page) => {
-  return meta.profile.pageTitle;
 };

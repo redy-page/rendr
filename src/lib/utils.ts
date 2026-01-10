@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { Experience, Project } from "./types";
+import { Experience, Page, PageMeta, Project } from "./types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -82,4 +82,8 @@ export const makeTitlePretty = (title: string) => {
 
 export const getTextFromMD = (md: string) => {
   return md.replace(/[^\w ]/g, " ");
+};
+
+export const getPageTitle = (meta: PageMeta | Page) => {
+  return meta.profile.pageTitle;
 };

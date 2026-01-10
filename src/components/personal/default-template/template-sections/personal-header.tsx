@@ -1,9 +1,8 @@
 "use client";
 import Link from "next/link";
 import { Link as ScrollLink } from "react-scroll";
-import { isArrNotEmpty } from "@/lib/utils";
+import { getPageTitle, isArrNotEmpty } from "@/lib/utils";
 import ModeToggle from "@/components/mode-toggle";
-import { getPageTitle } from "@/app/_internal/apiUtil";
 import { Page } from "@/lib/types";
 
 export default function DefaultPersonalHeader({ page }: { page: Page }) {
