@@ -58,7 +58,7 @@ export default async function ArticlesPage({
         <div
           className={cn(
             "grid sm:grid-cols-2 gap-8",
-            posts.content?.length > 2 && "lg:grid-cols-3"
+            posts.content?.length > 2 && "lg:grid-cols-3",
           )}
         >
           {posts.content && posts.content.length > 0 && (

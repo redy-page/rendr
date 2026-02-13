@@ -18,7 +18,7 @@ export const FILES_SERVER = process.env.NEXT_PUBLIC_FILES;
 const getDomain = () => headers().get("host");
 
 export const customFetchGet = async <T>(url: string): Promise<T> => {
-  const res = await fetch(`${API_URL_SERVER}${getDomain()}`, {
+  const res = await fetch(url, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -34,7 +34,7 @@ export const customFetchGet = async <T>(url: string): Promise<T> => {
 
 export const fetchPageMetaOrThrow = async () => {
   const page = await customFetchGet<PageMeta>(
-    `${API_URL_SERVER}${getDomain()}/meta`
+    `${API_URL_SERVER}${getDomain()}/meta`,
   );
   if (!page.enabled) return notFound();
   return page;
@@ -59,26 +59,26 @@ export const getPageTemplate = async () => {
 export const fetchArticleCards = async (
   page: number,
   size: number,
-  tag?: string
+  tag?: string,
 ): Promise<Pageable<ArticleCard>> => {
   return customFetchGet<Pageable<ArticleCard>>(
     `${API_URL_SERVER}${getDomain()}/post?page=${page - 1}&size=${size}${
       tag !== undefined ? `&tag=${tag}` : ""
-    }`
+    }`,
   );
 };
 
 export const fetchArticleCard = async (
-  postId: number
+  postId: number,
 ): Promise<ArticleCard> => {
   return customFetchGet<ArticleCard>(
-    `${API_URL_SERVER}${getDomain()}/post/${postId}/meta`
+    `${API_URL_SERVER}${getDomain()}/post/${postId}/meta`,
   );
 };
 
 export const fetchArticle = async (postId: number): Promise<Article> => {
   return customFetchGet<Article>(
-    `${API_URL_SERVER}${getDomain()}/post/${postId}`
+    `${API_URL_SERVER}${getDomain()}/post/${postId}`,
   );
 };
 
@@ -88,6 +88,6 @@ export const fetchProfileForPage = async (): Promise<PageProfile> => {
 
 export const fetchArticleTagCounts = async (): Promise<ArticleTagCount[]> => {
   return customFetchGet<ArticleTagCount[]>(
-    `${API_URL_SERVER}${getDomain()}/post/tags`
+    `${API_URL_SERVER}${getDomain()}/post/tags`,
   );
 };

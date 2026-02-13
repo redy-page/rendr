@@ -5,14 +5,12 @@ import {
 } from "@/app/_internal/apiUtil";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { compileMDX } from "next-mdx-remote/rsc";
-import rehypeHighlight from "rehype-highlight";
-import remarkGfm from "remark-gfm";
 import "highlight.js/styles/atom-one-dark.css";
 import { Avatar } from "@/components/ui/avatar";
 import Image from "next/image";
 import { Icons } from "@/components/icons";
 import ArticleCover from "@/components/blog/article-cover";
+import EmbeddedContent from "@/components/blog/embedded-content";
 import { getTextFromMD } from "@/lib/utils";
 import Header from "@/components/header";
 
@@ -47,18 +45,6 @@ export default async function ArticlePage({ params }: Props) {
   const articleURL = `https://${headers().get("host")}/post/${params.postId}/${
     params.title
   }`;
-
-  const { content } = await compileMDX({
-    source: post.content,
-    options: {
-      mdxOptions: {
-        /* @ts-ignore: rehypeHighlight */
-        rehypePlugins: [rehypeHighlight],
-        remarkPlugins: [remarkGfm],
-        format: "mdx",
-      },
-    },
-  });
 
   return (
     <>
@@ -108,9 +94,10 @@ export default async function ArticlePage({ params }: Props) {
             <div className="max-w-3xl mx-auto">
               <ArticleCover thumbnail={post.thumbnail} />
             </div>
-            <div className="post-md-content px-2 text-lg max-w-3xl mx-auto">
-              {content}
-            </div>
+            <EmbeddedContent
+              html={post.content}
+              className="post-md-content px-2 text-lg max-w-3xl mx-auto"
+            />
 
             <div>
               {post.postTags.map((tag, i) => (
